@@ -1,0 +1,12 @@
+Dagger 		attack:5	defence:1
+Club		attack:8	defence:1
+Mace		attack:11	defence:1
+Sword		attack:14	defence:1
+Spear		attack:18	defence:1
+Axe		attack:21	defence:1
+Warhammer	attack:25	defence:1
+
+
+hashlist
+
+Objekt muss keine namen haben in hashmap oder so, des supi
