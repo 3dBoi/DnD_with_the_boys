@@ -1,4 +1,5 @@
 package com.company;
 
-public class SideStoryCard extends StoryCard {
+public class SideStoryCard extends ProgressCard {
+    
 }

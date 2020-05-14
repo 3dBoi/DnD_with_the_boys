@@ -9,9 +9,10 @@ package com.company;
  *
  * @author Janis
  */
-public class StoryCard {
+public class ProgressCard extends StoryCard{
     
-    private String textMain;
-    private int id;
+    private String sub;
+    private String optionA;
+    private String optionB;
     
 }
