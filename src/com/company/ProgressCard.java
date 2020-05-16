@@ -9,7 +9,7 @@ package com.company;
  *
  * @author Janis
  */
-public class ProgressCard extends StoryCard{
+public abstract class ProgressCard extends StoryCard{
     
     private String sub;
     private String optionA;

@@ -5,13 +5,18 @@
  */
 package com.company;
 
+
 /**
  *
  * @author Janis
  */
-public class StoryCard {
+public abstract class StoryCard {
     
-    private String textMain;
-    private int id;
+    public static int linecounterMain = 1;
+    public static int linecounterSide1 = 1;
+    public static int linecounterSide2 = 1;
+    public static int linecounterSide3 = 1;
+    
+    
     
 }

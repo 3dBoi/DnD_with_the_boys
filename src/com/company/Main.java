@@ -6,6 +6,7 @@
 package com.company;
 
 import java.net.URISyntaxException;
+import java.net.URL;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -27,8 +28,8 @@ public class Main extends Application {
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
-        
         //custom Font wird hier geladen
+        
         
     }
     
