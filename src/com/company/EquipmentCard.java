@@ -26,11 +26,11 @@ public class EquipmentCard extends ItemCard {
 
     public void setDefence(double defence) {
         this.defence = defence;
-        EquipmentList.add(Dagger);
+
     }
 
 
-
+/*
     EquipmentCard Dagger = new EquipmentCard(5, 1);
     EquipmentCard Club = new EquipmentCard(8, 1);
     EquipmentCard Mace = new EquipmentCard(11, 1);
@@ -44,7 +44,7 @@ public class EquipmentCard extends ItemCard {
 
     Player player = new Player(100,100,2,10,10,5);
 
-
+    */
     public void equip(EquipmentCard Weapon){
 
 
@@ -53,7 +53,7 @@ public class EquipmentCard extends ItemCard {
 
 
 
-       com.company.Combat.player.setMaxattack(com.company.Combat.player.getMaxattack() + Weapon.getAttack());
+     //  com.company.Combat.player.setMaxattack(com.company.Combat.player.getMaxattack() + Weapon.getAttack());
 
     }
 

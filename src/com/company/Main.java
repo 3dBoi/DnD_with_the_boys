@@ -5,6 +5,7 @@
  */
 package com.company;
 
+import java.io.*;
 import java.net.URISyntaxException;
 import java.net.URL;
 import javafx.application.Application;
@@ -15,9 +16,26 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import java.util.*;
 
 
 public class Main extends Application {
+
+
+    File data= new File("Datenbank.txt");
+    Scanner S = new Scanner(data);
+    String Data;
+    Scanner Sc = new Scanner(Data);
+    public static HashMap<String,EquipmentCard> Equipment = new HashMap<String, EquipmentCard>();
+    //HashMap in der Ausrüstungsgegenstände, mit dem Namen Als Schlüssel aus einem Text Dokumet eingescannt und erstellt werden
+    public Main() throws FileNotFoundException {
+        while(S.hasNextLine()){
+            Data=S.nextLine();
+            Equipment.put(Sc.next(),new EquipmentCard(S.nextInt(),S.nextDouble()));
+
+        }
+    }
+
 
     @Override
     public void start(Stage stage) throws Exception {

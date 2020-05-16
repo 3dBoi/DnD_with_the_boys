@@ -1,7 +1,7 @@
 package com.company;
 import java.util.*;
 
-public class Fight {
+public class Combat {
 	static boolean playerattack;
 
 	
