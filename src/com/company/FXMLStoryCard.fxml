@@ -12,8 +12,8 @@
             <Font size="17.0" />
          </font>
       </Label>
-      <Button fx:id="buttonStoryCardOptA" layoutX="389.0" layoutY="524.0" mnemonicParsing="false" prefHeight="81.0" prefWidth="198.0" text="Option A" />
-      <Button fx:id="buttonStoryCardOptB" layoutX="692.0" layoutY="524.0" mnemonicParsing="false" prefHeight="81.0" prefWidth="198.0" text="Option B" />
+      <Button fx:id="buttonStoryCardOptA" layoutX="389.0" layoutY="524.0" mnemonicParsing="false" onAction="#handleButtonOptA" prefHeight="81.0" prefWidth="198.0" text="Option A" />
+      <Button fx:id="buttonStoryCardOptB" layoutX="692.0" layoutY="524.0" mnemonicParsing="false" onAction="#handleButtonOptB" prefHeight="81.0" prefWidth="198.0" text="Option B" />
       <Label fx:id="labelStoryCardID" layoutX="1177.0" layoutY="769.0" prefHeight="17.0" prefWidth="86.0" text="ID" />
       <AnchorPane layoutX="388.0" layoutY="151.0" prefHeight="275.0" prefWidth="500.0">
          <children>

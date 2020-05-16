@@ -47,6 +47,7 @@ public class FXMLMenueMainController implements Initializable {
     
         //Das Event für den 'New' Game Button
     @FXML private void handleButtonStartAction(ActionEvent event) throws IOException {
+        StoryCard.linecounterMain = 1;
         //Hier wird die StoryCard Szene geladen    
         AnchorPane pane = FXMLLoader.load(getClass().getResource("FXMLNameMenue.fxml"));
         mainMenuePane.getChildren().setAll(pane);
@@ -80,10 +81,9 @@ public class FXMLMenueMainController implements Initializable {
     }
     
     
-    @Override
+    @FXML @Override
     public void initialize(URL url, ResourceBundle rb) {
 
-      
         
     }    
     

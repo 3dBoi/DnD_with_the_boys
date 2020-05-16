@@ -5,19 +5,14 @@
  */
 package com.company;
 
-import java.io.IOException;
+import java.io.FileNotFoundException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.stage.Stage;
 
 /**
  *
@@ -25,20 +20,48 @@ import javafx.stage.Stage;
  */
 public class FXMLStoryCardController implements Initializable {
     
-   
+    Jukebox jukebox = new Jukebox();
+
     // Die labels, die im Menü benutzt wurden
-    @FXML private Label labelStoryCardSub;
-    @FXML private Label labelStoryCardMain;
-    @FXML private Label labelSubline;
-    @FXML private Label labelStoryCardID;
+    @FXML public Label labelStoryCardMain;
+    @FXML public Label labelStoryCardSub;
+    @FXML public Label labelStoryCardID;
     
     //Die Buttons, die im Menü benutzt werden
-    @FXML private Button buttonStoryCardOptA;
-    @FXML private Button buttonStoryCardOptB;
+    @FXML public Button buttonStoryCardOptA;
+    @FXML public Button buttonStoryCardOptB;
     
-    @Override
+    
+    //Die Szene wird geupdated
+    @FXML private void handleButtonOptA(ActionEvent event) throws FileNotFoundException {
+    MainStoryCard newCard = new MainStoryCard();
+    jukebox.playSelect();
+    update(newCard);
+    }
+    
+    //Die Szene wird geupdated
+    @FXML private void handleButtonOptB(ActionEvent event) throws FileNotFoundException {
+    MainStoryCard newCard = new MainStoryCard();
+    jukebox.playSelect();
+    update(newCard);
+    }
+    
+    //Die Paramter des erstellen Objekts "MainStoryCard" werden übergeben, um die Labels und Buttons upzudaten
+    @FXML
+    public void update(MainStoryCard card){
+        this.labelStoryCardMain.setText(card.getMain());
+        this.labelStoryCardSub.setText(card.getSub());
+        this.buttonStoryCardOptA.setText(card.getOptA());
+        this.buttonStoryCardOptB.setText(card.getOptB());
+        this.labelStoryCardID.setText(card.getId());
+    }
+    
+    @FXML @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+        
+
+    
+        
     }    
     
 }
