@@ -5,7 +5,6 @@
  */
 package com.company;
 
-import static com.company.Main.musicplayer;
 import java.net.URISyntaxException;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
@@ -41,13 +40,17 @@ public class Jukebox {
     }
     
     public void playMainTheme(){
-    changeMusic("MainTheme");
+    changeMusic("MainTheme.wav");
     }
     
         public void playMainTheme2(){
     changeMusic("Evan King - 20XX - 07 Quote.wav");
     }
     
+     public void playTypecast(){
+    changeMusic("11 Typecast.wav");
+    }
+        
     public void playTextAdvance(){
     changeMusic("text_advance_1.wav");
     }
