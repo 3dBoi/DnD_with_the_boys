@@ -36,25 +36,25 @@ public class Main extends Application {
         
         
     }
-    
     //Play Main Music
-     public static MediaPlayer musicplayer; {
-    Media mainTheme = null;
+    public static MediaPlayer musicplayer; {
+        Media mainTheme = null;
         try {
-            mainTheme = new Media(getClass().getResource("/resources/music/MainTheme.wav").toURI().toString());
+            mainTheme = new Media(getClass().getResource("./src/com/resources/music/MainTheme.wav").toURI().toString());
         } catch (URISyntaxException e) {
             e.printStackTrace();
         }
-    musicplayer = new MediaPlayer(mainTheme);
-    musicplayer.setAutoPlay(true);
-    musicplayer.setVolume(0.6);
-}
+        musicplayer = new MediaPlayer(mainTheme);
+        musicplayer.setAutoPlay(true);
+        musicplayer.setVolume(0.6);
+    }
+
 
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        launch(args);
+      launch(args);
 
         HashMap<String,EquipmentCard> Equipment = new HashMap<>();
         try {
@@ -63,8 +63,8 @@ public class Main extends Application {
             JSONArray arr = obj.getJSONArray("Items");                                      // Packt die Objekte in ein Json Array
             for (Object o : arr) {
                 JSONObject json = (JSONObject) o;
-                Equipment.put((String)json.get("name"), new EquipmentCard((String)json.get("name"),(int)json.get("attack"),(double)json.get("defence")));
-                System.out.print("Weapon name: " + json.get("name") + ", attack: " + json.get("attack") + ", defence: " + json.get("defence") + "\n");
+                Equipment.put((String)json.get("name"), new EquipmentCard((String)json.get("name"), (Integer) json.get("attack"), (double)(Integer) json.get("defence"), (Integer) json.get("slot")));
+                System.out.print("Weapon name: " + json.get("name") + ", attack: " + json.get("attack") + ", defence: " + json.get("defence") + ", slot: " + json.get("slot") + "\n");
             }
         } catch (FileNotFoundException f) {
             System.out.println("FileNotFoundException: " + f.getLocalizedMessage() +"\n");

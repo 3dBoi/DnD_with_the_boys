@@ -7,11 +7,13 @@ public class EquipmentCard extends ItemCard {
     private int attack;
     private double defence;
     private String name;
+    private final int slot;
 
-    public EquipmentCard(String name,int attack, double defence) {
+    public EquipmentCard(String name,int attack, double defence, int slot) {
         this.name = name;
         this.attack = attack;
         this.defence = defence;
+        this.slot = slot;
     }
 
     public int getAttack() {
