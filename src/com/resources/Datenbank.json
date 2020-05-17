@@ -1,0 +1,11 @@
+{
+    "Items": [
+        {"name": "Dagger", 	"attack": 5,	"defence":1},
+        {"name": "Club", 	"attack": 8, 	"defence":1},
+        {"name": "Mace", 	"attack": 11,	"defence":1},
+        {"name": "Sword", 	"attack": 14, 	"defence":1},
+        {"name": "Spear", 	"attack": 18,	"defence":1},
+        {"name": "Axe", 	"attack": 21, 	"defence":1},
+        {"name": "Warhammer", 	"attack": 25, 	"defence":1}
+    ]
+}

@@ -6,6 +6,7 @@
 package com.company;
 
 import java.io.*;
+import org.json.*;
 import java.net.URISyntaxException;
 import java.net.URL;
 import javafx.application.Application;
@@ -20,21 +21,6 @@ import java.util.*;
 
 
 public class Main extends Application {
-
-
-    File data= new File("Datenbank.txt");
-    Scanner S = new Scanner(data);
-    String Data;
-    Scanner Sc = new Scanner(Data);
-    public static HashMap<String,EquipmentCard> Equipment = new HashMap<String, EquipmentCard>();
-    //HashMap in der Ausrüstungsgegenstände, mit dem Namen Als Schlüssel aus einem Text Dokumet eingescannt und erstellt werden
-    public Main() throws FileNotFoundException {
-        while(S.hasNextLine()){
-            Data=S.nextLine();
-            Equipment.put(Sc.next(),new EquipmentCard(S.nextInt(),S.nextDouble()));
-
-        }
-    }
 
 
     @Override
@@ -69,7 +55,22 @@ public class Main extends Application {
      */
     public static void main(String[] args) {
         launch(args);
-        
+
+        HashMap<String,EquipmentCard> Equipment = new HashMap<>();
+        try {
+            JSONTokener tokener = new JSONTokener(new FileReader("./src/com/resources/Datenbank.json")); //verwandelt Dokument in einen Json Token
+            JSONObject obj = new JSONObject(tokener);                                              // erstellt Onjekte aus der Textdatei
+            JSONArray arr = obj.getJSONArray("Items");                                      // Packt die Objekte in ein Json Array
+            for (Object o : arr) {
+                JSONObject json = (JSONObject) o;
+                Equipment.put((String)json.get("name"), new EquipmentCard((String)json.get("name"),(int)json.get("attack"),(double)json.get("defence")));
+                System.out.print("Weapon name: " + json.get("name") + ", attack: " + json.get("attack") + ", defence: " + json.get("defence") + "\n");
+            }
+        } catch (FileNotFoundException f) {
+            System.out.println("FileNotFoundException: " + f.getLocalizedMessage() +"\n");
+        } catch (JSONException j) {
+            System.out.println("JSONException: " + j.getLocalizedMessage());
+        }
     }
     
 

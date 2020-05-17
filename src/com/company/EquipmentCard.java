@@ -6,8 +6,10 @@ public class EquipmentCard extends ItemCard {
 
     private int attack;
     private double defence;
+    private String name;
 
-    public EquipmentCard(int attack, double defence) {
+    public EquipmentCard(String name,int attack, double defence) {
+        this.name = name;
         this.attack = attack;
         this.defence = defence;
     }
