@@ -1,0 +1,11 @@
+{
+    "Items": [
+        {"name": "Dagger", 	"attack": 5,	"defence":0, "slot":  1,	"critAdd": 5},
+        {"name": "Club", 	"attack": 8, 	"defence":0, "slot":  1,	"critAdd": 3},
+        {"name": "Mace", 	"attack": 11,	"defence":0, "slot":  1,	"critAdd": 5},
+        {"name": "Sword", 	"attack": 14, 	"defence":0, "slot":  1,	"critAdd": 4},
+        {"name": "Spear", 	"attack": 18,	"defence":0, "slot":  1,	"critAdd": 7},
+        {"name": "Axe", 	"attack": 21, 	"defence":0, "slot":  1,	"critAdd": 5},
+        {"name": "Warhammer", 	"attack": 25, 	"defence":0, "slot":  1,	"critAdd": 8}
+    ]
+}
