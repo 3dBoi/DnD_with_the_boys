@@ -1,14 +1,16 @@
-package com.company;
+
+
+		package com.company;
 
 public class Player implements Character{
-	
+
 	private int health;
 	private int maxhealth;
 	private double defence;
 	private int attack;
 	private int maxattack;
 	private int crit;
-	
+
 	public Player(int health, int maxhealth, double defence, int attack, int maxattack, int crit) {
 		this.health = health;
 		this.maxhealth = maxhealth;
@@ -17,15 +19,15 @@ public class Player implements Character{
 		this.maxattack = maxattack;
 		this.crit = crit;
 	}
-	
+
 	@Override
 	public double performDefence() {
 		return defence;
 	}
-	
+
 	@Override
 	public int performAttack() {
-		
+
 		int threshold = (int) (Math.random()*100);
 		if(threshold<crit) {
 			System.out.println("Playercrit!");
@@ -34,14 +36,14 @@ public class Player implements Character{
 			return attack;
 		}
 	}
-	
+
 	@Override
 	public void resetAttack() {
 		attack = maxattack;
 	}
-	
-	
-	
+
+
+
 	public int getHealth() {
 		return health;
 	}
@@ -73,7 +75,7 @@ public class Player implements Character{
 	public void setAttack(int attack) {
 		this.attack = attack;
 	}
-	
+
 	public int getMaxattack() {
 		return maxattack;
 	}
@@ -89,7 +91,22 @@ public class Player implements Character{
 	public void setCrit(int crit) {
 		this.crit = crit;
 	}
-	
-	
+
+
 
 }
+
+    © 2020 GitHub, Inc.
+			Terms
+			Privacy
+			Security
+			Status
+			Help
+
+			Contact GitHub
+			Pricing
+			API
+			Training
+			Blog
+			About
+
