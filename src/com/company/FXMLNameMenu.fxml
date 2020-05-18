@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" fx:id="nameMenuPane" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.company.FXMLNameMenuController">
+   <children>
+      <Label fx:id="nameMenuLabelMain" layoutX="370.0" layoutY="143.0" text="WHAT IS YOUR NAME?">
+         <font>
+            <Font name="Noto Mono" size="50.0" />
+         </font>
+      </Label>
+      <TextField fx:id="nameMenuName" layoutX="542.0" layoutY="301.0" onKeyPressed="#onEnter" prefHeight="31.0" prefWidth="197.0" promptText="Enter your name." />
+      <Button fx:id="nameMenuBtnAccept" layoutX="614.0" layoutY="356.0" mnemonicParsing="false" onAction="#handleNameMenuBtnAccept" prefHeight="11.0" prefWidth="53.0" text="Accept" />
+      <Button fx:id="nameMenuBtnReturn" layoutX="14.0" layoutY="761.0" mnemonicParsing="false" onAction="#handleNameMenuBtnReturn" text="Return" />
+      <Label fx:id="labelError" alignment="CENTER" contentDisplay="CENTER" layoutX="534.0" layoutY="253.0" prefHeight="25.0" prefWidth="213.0" textAlignment="CENTER" textFill="#e12a2a" wrapText="true" />
+   </children>
+</AnchorPane>

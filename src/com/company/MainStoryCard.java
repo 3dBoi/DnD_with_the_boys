@@ -15,13 +15,14 @@ public class MainStoryCard extends ProgressCard {
     String optB = null;
     String id = null;
     
+    //Konstruktor
     public MainStoryCard() throws FileNotFoundException{
     create();
     }
     
 
     
-    //Die Story Karten werden eingelesen 
+    //Eine Story Karte wird eingelesen
     public final void create() throws FileNotFoundException{
 
         String count = Integer.toString(StoryCard.linecounterMain);

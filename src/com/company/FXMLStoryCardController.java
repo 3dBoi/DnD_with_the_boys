@@ -6,15 +6,19 @@
 package com.company;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 
 /**
  *
@@ -24,14 +28,19 @@ public class FXMLStoryCardController implements Initializable {
     
     Jukebox jukebox = new Jukebox();
 
-    // Die labels, die im Menü benutzt wurden
+    //Die Haupt-Szene
+    @FXML public Pane storyCardPane;
+    
+    // Die labels, die auf der Szene liegen
     @FXML public Label labelStoryCardMain;
     @FXML public Label labelStoryCardSub;
     @FXML public Label labelStoryCardID;
+    @FXML public Label labelPlayerName;
     
     //Die Buttons, die im Menü benutzt werden
     @FXML public Button buttonStoryCardOptA;
     @FXML public Button buttonStoryCardOptB;
+    @FXML public Button buttonStoryCardBack;
     
     
     //Die Szene wird geupdated
@@ -41,7 +50,17 @@ public class FXMLStoryCardController implements Initializable {
     update(newCard);
     }
     
-    //Die Szene wird geupdated
+    //Der Button "Back" wird initialisiert und das Hauptmenü wird geladen
+    @FXML private void handleButtonBack(ActionEvent event) throws IOException{
+    jukebox.playSelect();
+    
+    //Hier wird die MainMenue Szene geladen    
+    AnchorPane pane = FXMLLoader.load(getClass().getResource("FXMLMainMenu.fxml"));
+    storyCardPane.getChildren().setAll(pane);
+
+    }
+    
+    //Option B wird initialisiert
     @FXML private void handleButtonOptB(ActionEvent event) throws FileNotFoundException {
     MainStoryCard newCard = new MainStoryCard();
     jukebox.playSelect();
@@ -67,9 +86,8 @@ public class FXMLStoryCardController implements Initializable {
         } catch (FileNotFoundException ex) {
             Logger.getLogger(FXMLStoryCardController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-    
-        
+        labelPlayerName.setText(FXMLNameMenuController.player.getName());
+
     }    
     
 }

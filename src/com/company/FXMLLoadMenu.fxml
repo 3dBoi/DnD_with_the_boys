@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" fx:id="loadMenuePane" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.company.FXMLLoadMenuController">
+   <children>
+      <Label layoutX="502.0" layoutY="107.0" prefHeight="76.0" prefWidth="277.0" text="Load Game">
+         <font>
+            <Font name="Noto Mono" size="50.0" />
+         </font>
+      </Label>
+      <TableView layoutX="290.0" layoutY="196.0" prefHeight="550.0" prefWidth="700.0">
+        <columns>
+          <TableColumn prefWidth="150.0" text="PLAYER" />
+          <TableColumn prefWidth="200.0" text="AREA" />
+            <TableColumn prefWidth="200.0" text="TIME PLAYED" />
+            <TableColumn prefWidth="114.0" text="LAST SAVED" />
+        </columns>
+      </TableView>
+   </children>
+</AnchorPane>
