@@ -11,10 +11,16 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import org.json.*;
+
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.util.*;
 
 
 public class Main extends Application {
-    
+
+public static Player player;
 
     @Override
     public void start(Stage stage) throws Exception {
@@ -49,9 +55,28 @@ public class Main extends Application {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-                FXMLMainMenuController.jukeboxMain.playTypecast();
-                FXMLMainMenuController.jukeboxMain.setVolume(0.5);
+        Player player = new Player(100,100,2,10,10,5, "Peter");
+              //  FXMLMainMenuController.jukeboxMain.playTypecast();
+             //   FXMLMainMenuController.jukeboxMain.setVolume(0.5);
                 launch(args);
+
+
+        HashMap<String, EquipmentCard> equipmentCardHashMap = new HashMap<>();
+        try {
+            JSONTokener tokener = new JSONTokener(new FileReader("./src/resources/Datenbank.json"));
+            JSONObject object = new JSONObject(tokener);
+            JSONArray items = object.getJSONArray("Items");
+            for (Object o: items) {
+                JSONObject json = (JSONObject) o;       //Schlüssel durch Card id ersetzen
+                equipmentCardHashMap.put((String) json.get("name"), new EquipmentCard((String) json.get("name"), (int) json.get("attack"), (double)(Integer) json.get("defence"), (int) json.get("slot"), (int)json.get("critAdd")));
+                //   equipmentCardHashMap.put((String) json.get("name"), new EquipmentCard((String) json.get("name"), (int) json.get("attack"), (double) json.get("defence"), (int) json.get("slot")));
+            }
+        } catch (FileNotFoundException f) {
+            System.out.println("FileNotFound: " + f.getLocalizedMessage());
+        } catch (JSONException e) {
+            System.out.println("JSONException: " + e.getLocalizedMessage());
+        }
+
     }
     
 

@@ -7,9 +7,9 @@ public class Combat {
 	
 	public static void main(String[] args) {
 		
-		Player player = new Player(100,100,2,10,10,5, "Peter");
+		//Player player = new Player(100,100,2,10,10,5, "Peter");
 		EnemyCard enemy = new EnemyCard(100,100,2,10,10,5,new ArrayList<>(Arrays.asList(1,2,1)));
-		comabtSequence(player, enemy);
+		comabtSequence(Main.player, enemy);
 	}
 	
 	public static void comabtSequence(Player player, EnemyCard enemy) {
@@ -64,8 +64,6 @@ public class Combat {
 			playerattack = true;
 		}else if(playermove==2){
 			enemy.setAttack((int) (enemy.getAttack()/player.performDefence()));
-		}else {
-			
 		}
 	}
 	
