@@ -42,17 +42,29 @@ public class FXMLStoryCardController implements Initializable {
     @FXML public Button buttonStoryCardOptB;
     @FXML public Button buttonStoryCardBack;
     
+    //Enthält die ID der aktuellen Karte, wichtig für Algorithmen
+    public static int currentID;
+    
+    public static boolean hasMonster = false;
+    
+    
     
     //Die Szene wird geupdated
-    @FXML private void handleButtonOptA(ActionEvent event) throws FileNotFoundException {
+    @FXML private void handleButtonOptA(ActionEvent event) throws FileNotFoundException, IOException {
+    checkEventsA();
+    if(hasMonster = false)
+    {
     MainStoryCard newCard = new MainStoryCard();
     jukebox.playSelect();
     update(newCard);
     }
     
+    }
+    
     //Der Button "Back" wird initialisiert und das Hauptmenü wird geladen
     @FXML private void handleButtonBack(ActionEvent event) throws IOException{
     jukebox.playSelect();
+    FXMLMainMenuController.jukeboxMain.getMediaPlayer().play();
     
     //Hier wird die MainMenue Szene geladen    
     AnchorPane pane = FXMLLoader.load(getClass().getResource("FXMLMainMenu.fxml"));
@@ -75,6 +87,32 @@ public class FXMLStoryCardController implements Initializable {
         this.buttonStoryCardOptA.setText(card.getOptA());
         this.buttonStoryCardOptB.setText(card.getOptB());
         this.labelStoryCardID.setText(card.getId());
+        currentID = Integer.parseInt(card.getId());
+    }
+    
+    public void checkEventsA() throws IOException{ 
+        switch(currentID){
+            case 1:
+                System.out.println(Integer.toString(currentID));
+                break;
+            case 2:
+                System.out.println(Integer.toString(currentID));
+                break;
+            case 3: 
+        hasMonster = true;
+        AnchorPane pane = FXMLLoader.load(getClass().getResource("FXMLCombat.fxml"));
+        storyCardPane.getChildren().setAll(pane);
+        break;
+        }
+    }
+    
+     public void checkEventsB() throws IOException{
+    
+        switch(currentID){
+            case 2: System.out.println("Id: 2");
+            break;
+        }
+    
     }
     
     @FXML @Override
@@ -82,6 +120,7 @@ public class FXMLStoryCardController implements Initializable {
         
         try {
             MainStoryCard newCard = new MainStoryCard();
+            currentID = Integer.parseInt(newCard.getId());
             update(newCard);
         } catch (FileNotFoundException ex) {
             Logger.getLogger(FXMLStoryCardController.class.getName()).log(Level.SEVERE, null, ex);

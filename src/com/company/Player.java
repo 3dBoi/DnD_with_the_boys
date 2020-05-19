@@ -1,33 +1,33 @@
-
-
-		package com.company;
+package com.company;
 
 public class Player implements Character{
-
+	
 	private int health;
 	private int maxhealth;
 	private double defence;
 	private int attack;
 	private int maxattack;
 	private int crit;
-
-	public Player(int health, int maxhealth, double defence, int attack, int maxattack, int crit) {
+        private String name;
+	
+	public Player(int health, int maxhealth, double defence, int attack, int maxattack, int crit, String name) {
 		this.health = health;
 		this.maxhealth = maxhealth;
 		this.defence = defence;
 		this.attack = attack;
 		this.maxattack = maxattack;
 		this.crit = crit;
+                this.name = name;             
 	}
-
+	
 	@Override
 	public double performDefence() {
 		return defence;
 	}
-
+	
 	@Override
 	public int performAttack() {
-
+		
 		int threshold = (int) (Math.random()*100);
 		if(threshold<crit) {
 			System.out.println("Playercrit!");
@@ -36,14 +36,14 @@ public class Player implements Character{
 			return attack;
 		}
 	}
-
+	
 	@Override
 	public void resetAttack() {
 		attack = maxattack;
 	}
-
-
-
+	
+	
+	
 	public int getHealth() {
 		return health;
 	}
@@ -75,7 +75,7 @@ public class Player implements Character{
 	public void setAttack(int attack) {
 		this.attack = attack;
 	}
-
+	
 	public int getMaxattack() {
 		return maxattack;
 	}
@@ -91,22 +91,13 @@ public class Player implements Character{
 	public void setCrit(int crit) {
 		this.crit = crit;
 	}
-
-
+        
+        public void setName(String name){
+                this.name = name;}
+        
+        public String getName(){
+            return name;}
+	
+	
 
 }
-
-    © 2020 GitHub, Inc.
-			Terms
-			Privacy
-			Security
-			Status
-			Help
-
-			Contact GitHub
-			Pricing
-			API
-			Training
-			Blog
-			About
-

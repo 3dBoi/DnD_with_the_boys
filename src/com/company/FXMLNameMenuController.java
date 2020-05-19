@@ -58,12 +58,13 @@ public class FXMLNameMenuController implements Initializable {
             else{
                 
         //Die erste StoryCard wird geladen   
+        FXMLMainMenuController.jukeboxMain.getMediaPlayer().pause();
         player.setName(nameMenuName.getText());
-        System.out.println(player.getName());
         AnchorPane pane = FXMLLoader.load(getClass().getResource("FXMLStoryCard.fxml"));
         nameMenuPane.getChildren().setAll(pane);
         
         //Die Jukebox Sounds werden hier geregelt
+        
         jukebox.playConfirm1();
             }
     }

@@ -9,12 +9,8 @@ package com.company;
  *
  * @author Janis
  */
-public interface Character {
+public enum CombatMoves {
     
-    public int performAttack();
-	
-	public double performDefence();
-	
-	public void resetAttack();
+    ITEM, ATTACK, DEFEND
     
 }

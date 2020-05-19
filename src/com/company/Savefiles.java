@@ -9,12 +9,6 @@ package com.company;
  *
  * @author Janis
  */
-public interface Character {
-    
-    public int performAttack();
-	
-	public double performDefence();
-	
-	public void resetAttack();
+public class Savefiles {
     
 }

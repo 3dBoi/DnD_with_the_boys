@@ -5,6 +5,7 @@
  */
 package com.company;
 
+import static java.lang.Integer.max;
 import java.net.URISyntaxException;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
@@ -32,12 +33,31 @@ public class Jukebox {
     
     }
     public void setVolume(double volume){
-    Main.musicplayer.setVolume(volume);
+    musicplayer.setVolume(volume);
     }
     
     public void setAutoPlay(){
-    Main.musicplayer.setAutoPlay(true);
+    musicplayer.setAutoPlay(true);
     }
+    
+    public void pause(){
+    musicplayer.pause();
+    }
+   
+    
+    
+    public void dispose(){
+    musicplayer.dispose();}
+    
+    public void play(){
+    musicplayer.play();}
+    
+    public void stop(){
+    musicplayer.stop();}
+    
+    public MediaPlayer getMediaPlayer() {
+        return musicplayer;
+	}
     
     public void playMainTheme(){
     changeMusic("MainTheme.wav");
@@ -49,7 +69,8 @@ public class Jukebox {
     
      public void playTypecast(){
     changeMusic("11 Typecast.wav");
-    }
+     }
+    
         
     public void playTextAdvance(){
     changeMusic("text_advance_1.wav");
@@ -67,10 +88,45 @@ public class Jukebox {
     changeMusic("81 menu_confirm_1_dry.wav");
     }
       
-            public void playConfirm1Rev(){
+    public void playConfirm1Rev(){
     changeMusic("81 menu_confirm_1_reverb.wav");
     }
     
+    public void playSpeechHigh1(){
+    changeMusic("61 speech_high_1.wav");}
     
     
+    
+    public void playRandomSpeechFemale(){
+        int i = (int)getRandomInt(1,4);
+        switch(i){
+            case 1: changeMusic("61 speech_high_1.wav");
+                 break;
+            case 2: changeMusic("62 speech_high_2.wav");
+                 break;
+            case 3: changeMusic("63 speech_high_3.wav");
+                 break;
+            case 4: changeMusic("64 speech_high_4.wav");
+                 break; 
+        }
+        }
+    
+     public void playRandomSpeechMale(){
+        int i = (int)getRandomInt(1,4);
+        switch(i){
+            case 1: changeMusic("73 speech_lowmid_1.wav");
+                 break;
+            case 2: changeMusic("74 speech_lowmid_2.wav");
+                 break;
+            case 3: changeMusic("75 speech_lowmid_3.wav");
+                 break;
+            case 4: changeMusic("76 speech_lowmid_4.wav");
+                 break; 
+        }
+        }
+  
+    public double getRandomInt(int min, int max){
+    return Math.random() * (max - min) + min;
+    }
+
 }

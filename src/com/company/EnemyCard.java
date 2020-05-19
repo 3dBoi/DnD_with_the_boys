@@ -11,7 +11,7 @@ public class EnemyCard implements Character{
 	private int maxattack;
 	private int crit;
 	
-	private ArrayList<Integer> moveset = new ArrayList<Integer>();
+	private ArrayList<Integer> moveset = new ArrayList<>();
 	
 	public EnemyCard(int health, int maxhealth, double defence, int attack, int maxattack, int crit, ArrayList<Integer> moveset) {
 		this.health = health;
