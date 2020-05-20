@@ -10,15 +10,16 @@ import java.util.ArrayList;
 
 public class Storage implements Serializable {
 
-	private static ArrayList inUse;
-	private static ArrayList used;
-	private static ArrayList undiscovered;
+	private static ArrayList<Card>  inUse;
+	private static ArrayList<Card>  used;
+	private static ArrayList<Card>  undiscovered;
 	private static Player player;
 	
 	public Storage() {
+
 	}
 	
-	public void save(ArrayList inUse, ArrayList used, ArrayList undiscovered) {
+	public void save(ArrayList<Card> inUse, ArrayList<Card> used, ArrayList<Card> undiscovered) {
 		
 		this.inUse=inUse;
 		this.used=used;
@@ -36,9 +37,15 @@ public class Storage implements Serializable {
 			FileOutputStream fos3 = new FileOutputStream ("undiscovered.save");
 			ObjectOutputStream oos3 = new ObjectOutputStream (fos3);
 			oos3.writeObject (undiscovered);
+			
+			fos1.close();
+			fos2.close();
+			fos3.close();
+			oos1.close();
+			oos2.close();
+			oos3.close();
 		
 		} catch (IOException e) {
-			e.printStackTrace();
 		}
 			
 	}
@@ -47,37 +54,44 @@ public class Storage implements Serializable {
 		try {
 			FileInputStream fis1 = new FileInputStream ("inUse.save");
 			ObjectInputStream ois1 = new ObjectInputStream (fis1);
-			this.inUse= (ArrayList) ois1.readObject ();
+			this.inUse= (ArrayList <Card>) ois1.readObject ();
 			
 			FileInputStream fis2 = new FileInputStream ("used.save");
 			ObjectInputStream ois2 = new ObjectInputStream (fis2);
-			this.used= (ArrayList) ois2.readObject ();
+			this.used= (ArrayList <Card>) ois2.readObject ();
 			
 			FileInputStream fis3 = new FileInputStream ("undiscovered.save");
 			ObjectInputStream ois3 = new ObjectInputStream (fis3);
-			this.undiscovered= (ArrayList) ois3.readObject ();
+			this.undiscovered= (ArrayList <Card>) ois3.readObject ();
+			
+			fis1.close();
+			fis2.close();
+			fis3.close();
+			ois1.close();
+			ois2.close();
+			ois3.close();
 			
 		} catch(IOException | ClassNotFoundException e) {
-			e.printStackTrace();
 		}
 	}
 	
-	public void setStorage(ArrayList inUse, ArrayList used, ArrayList undiscovered) {
+	public void setStorage(ArrayList <Card> inUse, ArrayList <Card> used, ArrayList <Card> undiscovered) {
 		this.inUse=inUse;
 		this.used=used;
 		this.undiscovered=undiscovered;
 	}
 
-	public  static ArrayList getInUse() {
+	public  static ArrayList <Card> getInUse() {
 		return inUse;
 	}
 
-	public static ArrayList getUsed() {
+	public static ArrayList <Card> getUsed() {
 		return used;
 	}
 
-	public static ArrayList getUndiscovered() {
+	public static ArrayList <Card> getUndiscovered() {
 		return undiscovered;
 	}
 
 }
+
