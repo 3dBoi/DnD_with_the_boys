@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" fx:id="endMenuPane" prefHeight="800.0" prefWidth="1280.0" style="-fx-background-color: BLACK;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.company.FXMLEndMenuController">
+   <children>
+      <Label alignment="TOP_CENTER" layoutX="407.0" layoutY="204.0" prefHeight="97.0" prefWidth="466.0" text="YOU ARE DEAD" textAlignment="CENTER" textFill="#f5f5f5" wrapText="true">
+         <font>
+            <Font name="Noto Mono" size="60.0" />
+         </font>
+      </Label>
+      <Label alignment="TOP_CENTER" layoutX="433.0" layoutY="279.0" prefHeight="29.0" prefWidth="414.0" text="maybe try a different route?" textAlignment="CENTER" textFill="#f5f5f5" wrapText="true">
+         <font>
+            <Font name="Noto Mono" size="18.0" />
+         </font>
+      </Label>
+      <Button fx:id="buttonContinue" layoutX="529.0" layoutY="416.0" mnemonicParsing="false" onAction="#handleButtonContinue" prefHeight="54.0" prefWidth="222.0" text="Continue" wrapText="true">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Button>
+      <Button fx:id="buttonQuit" layoutX="529.0" layoutY="524.0" mnemonicParsing="false" onAction="#handleButtonQuit" prefHeight="54.0" prefWidth="222.0" text="Quit" wrapText="true">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Button>
+      <Button fx:id="buttonMainMenu" layoutX="529.0" layoutY="470.0" mnemonicParsing="false" onAction="#handleButtonMainMenu" prefHeight="54.0" prefWidth="222.0" text="Main Menu" wrapText="true">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>
