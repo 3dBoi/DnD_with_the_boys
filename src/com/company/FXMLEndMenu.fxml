@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="endMenuePane" prefHeight="800.0" prefWidth="1280.0" style="-fx-background-color: BLACK;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.company.FXMLEndMenuController">
+<AnchorPane id="AnchorPane" fx:id="endMenuPane" prefHeight="800.0" prefWidth="1280.0" style="-fx-background-color: BLACK;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.company.FXMLEndMenuController">
    <children>
       <Label alignment="TOP_CENTER" layoutX="407.0" layoutY="204.0" prefHeight="97.0" prefWidth="466.0" text="YOU ARE DEAD" textAlignment="CENTER" textFill="#f5f5f5" wrapText="true">
          <font>

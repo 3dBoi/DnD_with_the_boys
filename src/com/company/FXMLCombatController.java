@@ -5,15 +5,19 @@
  */
 package com.company;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
 
 /**
  * FXML Controller class
@@ -22,6 +26,7 @@ import javafx.scene.control.Label;
  */
 public class FXMLCombatController implements Initializable {
 
+    @FXML private Pane combatPane;
     @FXML private Button combatButnAttack;
     @FXML private Button combatBtnDefend;
     @FXML private Button combatBtnItems;
@@ -32,27 +37,29 @@ public class FXMLCombatController implements Initializable {
     @FXML private Label combatLabelPlayerCRIT;
     @FXML private Label combatLabelEnemyHP;
     @FXML private Label combatLabelEnemyName;
-    public static EnemyCard enemy = new EnemyCard(100,100,2,10,10,5,new ArrayList<>(Arrays.asList(1,2,1)));
-    static boolean playerattack;
+    public static EnemyCard enemy = new EnemyCard("E1", "Slime", 100,100,2,10,10,5, EnemyCard.generateMoveset());
+    static CombatMovesE playermove;
     public static int counter = 0;
 
     
+    ////////////////////////////////////
+    //Die Buttons werden initialisiert//
+    ////////////////////////////////////
     
-    @Override public void initialize(URL url, ResourceBundle rb) {
-        create(FXMLNameMenuController.player, enemy); }    
 
-    @FXML void  handleCombatBtnAttack(ActionEvent event) {
-        doPlayerMove(FXMLNameMenuController.player, enemy, CombatMoves.ATTACK);
-        checkCounter(FXMLNameMenuController.player, enemy);
+    @FXML void  handleCombatBtnAttack(ActionEvent event) throws IOException {
+        playermove = CombatMovesE.ATTACK;
+        combat(FXMLNameMenuController.player, enemy);
         combatUpdate(FXMLNameMenuController.player, enemy);
     }
 
-    @FXML private void handleCombatBtnDefend(ActionEvent event) {
-        doPlayerMove(FXMLNameMenuController.player, enemy, CombatMoves.DEFEND);
-        checkCounter(FXMLNameMenuController.player, enemy);
+    @FXML private void handleCombatBtnDefend(ActionEvent event) throws IOException {
+        playermove = CombatMovesE.DEFEND;
+        enemy.setAttack((int) (enemy.getAttack()/FXMLNameMenuController.player.performDefence()));
+        combat(FXMLNameMenuController.player, enemy);
         combatUpdate(FXMLNameMenuController.player, enemy);
     }
-
+    
     @FXML private void handleCombatBtnItems(ActionEvent event) {}
     
     
@@ -65,47 +72,66 @@ public class FXMLCombatController implements Initializable {
         combatLabelEnemyHP.setText("HP: "+Integer.toString(enemy.getHealth()));    
     }
     
-        private void combatUpdate(Player player, EnemyCard enemy){
+        private void combatUpdate(Player player, EnemyCard enemy) throws IOException{
         combatLabelPlayerHP.setText("HP: "+ Integer.toString(player.getHealth()));
-        combatLabelEnemyHP.setText("HP: "+Integer.toString(enemy.getHealth()));    
+        combatLabelEnemyHP.setText("HP: "+Integer.toString(enemy.getHealth()));   
+            //Falls die Lebenspunkte des Spielers auf 0 fallen - Game Over Menü
+            if(player.getHealth() <= 0){
+                Jukebox.main.getMediaPlayer().pause();
+                AnchorPane pane = FXMLLoader.load(getClass().getResource("FXMLEndMenu.fxml"));
+                combatPane.getChildren().setAll(pane);
+            }
+            //Gewinnt der Spieler den Kampf, so wird die nächste Story Card geladen -> In Zukunft Loot und weiteres Fenster (?)
+            if(enemy.getHealth() <= 0){
+            labelCombatUpdates.setText("VICTORY");
+                AnchorPane pane = FXMLLoader.load(getClass().getResource("FXMLCard.fxml"));
+                combatPane.getChildren().setAll(pane);}
+        //Die Angrifftswerte werden für die nächste Runde zurückgesetzt
+        enemy.setAttack(enemy.getMaxattack());
+        player.setAttack(player.getMaxattack());
     }
   
-    
-    public static void doPlayerMove(Player player, EnemyCard enemy, CombatMoves playermove) {
-        switch (playermove) {
-            case ATTACK:
-                playerattack = true;
-                break;
-            case DEFEND:
-                enemy.setAttack((int) (enemy.getAttack()/player.performDefence()));
-                break;
-            default:
-                break;
-        }
-    }
-        
-    public static void doEnemyMove(Player player, EnemyCard enemy, int enemymove) {	
+   
+    public  void doEnemyMove(Player player, EnemyCard enemy, int enemymove) {	
             switch (enemymove) {
+                //Gegner greift an
             case 1:
 		player.setHealth(player.getHealth()-enemy.performAttack());
+                labelCombatUpdates.setText("Enemy attacked!");
+                break;
+                //Gegner verteidigt
             case 2:
 			player.setAttack((int) (player.getAttack()/enemy.performDefence()));
+                        labelCombatUpdates.setText("Enemy defends!!");
+                        break;
 		}
 	}
     
-    public static void checkCounter(Player player, EnemyCard enemy){
-    if(counter < enemy.getMoveset().size()) {
+    //Die Methoden berechnet die Algorithmen der Gegner KI
+    public  void combat(Player player, EnemyCard enemy){
+        
+    if(counter < enemy.getMoveset().size()) { 
+        //Es wird mit dem Runden Counter verglichen und geschaut, ob der Gegner angreift, oder verteidigt
 	int enemymove = enemy.getMoveset().get(counter);
 	doEnemyMove(player, enemy, enemymove);
+        
+             //der Counter wird aktualisiert, sobald das Moveset vom Gegner einen Run hatte
             }else {
 		counter=0;
 		int enemymove = enemy.getMoveset().get(counter);
 		doEnemyMove(player, enemy, enemymove); }
-	if(playerattack) {
+    
+	if(playermove.equals(CombatMovesE.ATTACK)) {
             enemy.setHealth(enemy.getHealth()-player.performAttack()); 
-        
+           
        } 
+        counter++;
     }
+    
+        @Override public void initialize(URL url, ResourceBundle rb) {
+        //Die Szene wird mit Werten vom Spieler und des Gegners aktualisiert
+        create(FXMLNameMenuController.player, enemy);
+        }    
 }
 
             

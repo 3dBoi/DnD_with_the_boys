@@ -1,41 +1,24 @@
 package com.company;
 
 
-import java.io.FileNotFoundException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.util.Scanner;
 
 
-public class MainStoryCard extends ProgressCard {
+
+public class MainStoryCard extends Card {
     
     String main = null;
     String sub = null;
     String optA = null;
     String optB = null;
-    String id = null;
     
     //Konstruktor
-    public MainStoryCard() throws FileNotFoundException{
-    create();
-    }
-    
-
-    
-    //Eine Story Karte wird eingelesen
-    public final void create() throws FileNotFoundException{
-
-        String count = Integer.toString(StoryCard.linecounterMain);
-       InputStream stream = MainStoryCard.class.getResourceAsStream("/resources/pools/main/"+count+".txt");
-        try (Scanner sc = new Scanner(new InputStreamReader(stream))) {
-            this.main = sc.nextLine();
-            this.sub = sc.nextLine();
-            this.optA = sc.nextLine();
-            this.optB = sc.nextLine();
-            this.id = sc.nextLine();
-            sc.close();
-            StoryCard.linecounterMain++;
-        }
+     public MainStoryCard(String id, String name, String main, String sub, String optA, String optB) {
+        super(id, name);
+        this.main = main;
+        this.sub=sub;
+        this.optA =optA;
+        this.optB = optB;
+//    create();
     }
 
         
@@ -55,10 +38,15 @@ public class MainStoryCard extends ProgressCard {
         return optB;
     }
 
-    public String getId() {
-        return id;
-    }
     
+    @Override
+    public String toString(){
+    return "ID: " + getId() + "\n"+
+            "Main Text: " + getMain() + "\n"+
+            "Sub Text: " + getSub() + "\n"+
+            "Option A: " + getOptA() + "\n"+
+            "Option B: " + getOptB();
+    }
     
 
        

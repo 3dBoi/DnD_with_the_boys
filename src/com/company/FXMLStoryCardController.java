@@ -9,8 +9,6 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -26,7 +24,7 @@ import javafx.scene.layout.Pane;
  */
 public class FXMLStoryCardController implements Initializable {
     
-    Jukebox jukebox = new Jukebox();
+
 
     //Die Haupt-Szene
     @FXML public Pane storyCardPane;
@@ -45,26 +43,32 @@ public class FXMLStoryCardController implements Initializable {
     //Enthält die ID der aktuellen Karte, wichtig für Algorithmen
     public static int currentID;
     
-    public static boolean hasMonster = false;
     
     
     
     //Die Szene wird geupdated
     @FXML private void handleButtonOptA(ActionEvent event) throws FileNotFoundException, IOException {
-    checkEventsA();
-    if(hasMonster = false)
-    {
-    MainStoryCard newCard = new MainStoryCard();
-    jukebox.playSelect();
-    update(newCard);
+    switch (checkEventsA()){
+        
+        case STORYCARD:
+                //Hier wird später aus der Queue entnommen
+                MainStoryCard newCard = new MainStoryCard(null, null, null, null, null, null);
+                update(newCard);
+                break;
+                
+        case ENCOUNTERCARD:
+                AnchorPane pane = FXMLLoader.load(getClass().getResource("FXMLCombat.fxml"));
+                storyCardPane.getChildren().setAll(pane);
+                break;
+            
+        case EQUIPMENTCARD:
+                break;
     }
     
     }
     
     //Der Button "Back" wird initialisiert und das Hauptmenü wird geladen
     @FXML private void handleButtonBack(ActionEvent event) throws IOException{
-    jukebox.playSelect();
-    FXMLMainMenuController.jukeboxMain.getMediaPlayer().play();
     
     //Hier wird die MainMenue Szene geladen    
     AnchorPane pane = FXMLLoader.load(getClass().getResource("FXMLMainMenu.fxml"));
@@ -74,14 +78,15 @@ public class FXMLStoryCardController implements Initializable {
     
     //Option B wird initialisiert
     @FXML private void handleButtonOptB(ActionEvent event) throws FileNotFoundException {
-    MainStoryCard newCard = new MainStoryCard();
-    jukebox.playSelect();
+    MainStoryCard newCard = new MainStoryCard(null, null, null, null, null, null);
     update(newCard);
     }
     
-    //Die Paramter des erstellen Objekts "MainStoryCard" werden übergeben, um die Labels und Buttons upzudaten
-    @FXML
-    public void update(MainStoryCard card){
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    //Die Paramter des erstellen Objekts "MainStoryCard" werden übergeben, um die Labels und Buttons upzudaten//
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    
+    @FXML public void update(MainStoryCard card){
         this.labelStoryCardMain.setText(card.getMain());
         this.labelStoryCardSub.setText(card.getSub());
         this.buttonStoryCardOptA.setText(card.getOptA());
@@ -90,20 +95,35 @@ public class FXMLStoryCardController implements Initializable {
         currentID = Integer.parseInt(card.getId());
     }
     
-    public void checkEventsA() throws IOException{ 
+    //Die Events für die jeweiligen IDs der Karten werden hier gehandelt
+    //Es wird geguckt, welcher Typ von Karte nach der jetzigen folgt
+    public CardsE checkEventsA() throws IOException{ 
+        CardsE nextCard = CardsE.STORYCARD; 
         switch(currentID){
             case 1:
                 System.out.println(Integer.toString(currentID));
-                break;
+                return nextIsEncounter(nextCard);
             case 2:
                 System.out.println(Integer.toString(currentID));
-                break;
+                return nextIsStory(nextCard);
             case 3: 
-        hasMonster = true;
-        AnchorPane pane = FXMLLoader.load(getClass().getResource("FXMLCombat.fxml"));
-        storyCardPane.getChildren().setAll(pane);
-        break;
+                System.out.println(Integer.toString(currentID));
+                return nextIsEncounter(nextCard);
+
+            default: return nextCard;
         }
+    }
+    
+    public CardsE nextIsStory(CardsE nextCard){
+        return nextCard = CardsE.STORYCARD;
+    }
+    
+    public CardsE nextIsEncounter(CardsE nextCard){
+        return nextCard = CardsE.ENCOUNTERCARD;
+    }
+    
+    public CardsE nextIsItem(CardsE nextCard){
+        return nextCard = CardsE.EQUIPMENTCARD;
     }
     
      public void checkEventsB() throws IOException{
@@ -115,16 +135,20 @@ public class FXMLStoryCardController implements Initializable {
     
     }
     
-    @FXML @Override
-    public void initialize(URL url, ResourceBundle rb) {
+     
+     ////////////////////////////////////////////////
+     //Das passiert, wenn die Szene aufgerufen wird//
+     /////Es wird eine neue Story Karte geladen//////
+     ////////////////////////////////////////////////
+    @FXML @Override public void initialize(URL url, ResourceBundle rb) {
         
-        try {
-            MainStoryCard newCard = new MainStoryCard();
-            currentID = Integer.parseInt(newCard.getId());
-            update(newCard);
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(FXMLStoryCardController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        //Eine neue Karte wird erstellt
+        MainStoryCard newCard = Main.MainStoryCardsHashMap.get("1");
+        //Die ID der Karte wird gespeichert
+        currentID = Integer.parseInt(newCard.getId());
+        //Die Szenen-Elemente werden mit der neuen Karte aktualisiert
+        update(newCard);
+        //Für Dokumentation - wird später entfernt (?)
         labelPlayerName.setText(FXMLNameMenuController.player.getName());
 
     }    

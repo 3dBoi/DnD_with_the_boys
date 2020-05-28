@@ -24,34 +24,37 @@ public class Storage implements Serializable {
 	
 	public boolean save(HashMap<String,HashMap> inUse, HashMap<String,HashMap> used, HashMap<String,HashMap> undiscovered, Player player) {
 		
-		this.inUse=inUse;
-		this.used=used;
-		this.undiscovered=undiscovered;
-                this.player=player;
-                this.current=current;
+		Storage.inUse=inUse;
+		Storage.used=used;
+		Storage.undiscovered=undiscovered;
+                Storage.player=player;
+                Storage.current=current;
 		
 		try {
-			FileOutputStream fos1 = new FileOutputStream ("src/resources/savefiles/"+location+"/inUse.save");
-			ObjectOutputStream oos1 = new ObjectOutputStream (fos1);
-			oos1.writeObject (inUse);
-			
-			FileOutputStream fos2 = new FileOutputStream ("src/resources/savefiles/"+location+"/used.save");
-			ObjectOutputStream oos2 = new ObjectOutputStream (fos2);
-			oos2.writeObject (used);
-		
-			FileOutputStream fos3 = new FileOutputStream ("src/resources/savefiles/"+location+"/undiscovered.save");
-			ObjectOutputStream oos3 = new ObjectOutputStream (fos3);
-			oos3.writeObject (undiscovered);
-                        
-                        FileOutputStream fos4 = new FileOutputStream ("src/resources/savefiles/"+location+"/player.save");
-			ObjectOutputStream oos4 = new ObjectOutputStream (fos4);
-			oos4.writeObject (player);
-                        
+                    ObjectOutputStream oos1;
+                    FileOutputStream fos2;
+                    ObjectOutputStream oos2;
+                    FileOutputStream fos3;
+                    ObjectOutputStream oos3;
+                    FileOutputStream fos4;
+                    ObjectOutputStream oos4;
+                    
+                    try (FileOutputStream fos1 = new FileOutputStream ("src/resources/savefiles/"+location+"/inUse.save")) {
+                        oos1 = new ObjectOutputStream (fos1);
+                        oos1.writeObject (inUse);
+                        fos2 = new FileOutputStream ("src/resources/savefiles/"+location+"/used.save");
+                        oos2 = new ObjectOutputStream (fos2);
+                        oos2.writeObject (used);
+                        fos3 = new FileOutputStream ("src/resources/savefiles/"+location+"/undiscovered.save");
+                        oos3 = new ObjectOutputStream (fos3);
+                        oos3.writeObject (undiscovered);
+                        fos4 = new FileOutputStream ("src/resources/savefiles/"+location+"/player.save");
+                        oos4 = new ObjectOutputStream (fos4);
+                        oos4.writeObject (player);
                         //FileOutputStream fos5 = new FileOutputStream ("src/resources/savefiles/"+location+"/current.save");
-			//ObjectOutputStream oos5 = new ObjectOutputStream (fos5);
-			//oos5.writeObject (current);
-			
-			fos1.close();
+                        //ObjectOutputStream oos5 = new ObjectOutputStream (fos5);
+                        //oos5.writeObject (current);
+                    }
 			fos2.close();
 			fos3.close();
                         fos4.close();
@@ -71,27 +74,29 @@ public class Storage implements Serializable {
 	
 	public boolean load() {
 		try {
-			FileInputStream fis1 = new FileInputStream ("src/resources/savefiles/"+location+"/inUse.save");
-			ObjectInputStream ois1 = new ObjectInputStream (fis1);
-			this.inUse= (HashMap<String,HashMap>) ois1.readObject ();
-			
-			FileInputStream fis2 = new FileInputStream ("src/resources/savefiles/"+location+"/used.save");
-			ObjectInputStream ois2 = new ObjectInputStream (fis2);
-			this.used= (HashMap<String,HashMap>) ois2.readObject ();
-			
-			FileInputStream fis3 = new FileInputStream ("src/resources/savefiles/"+location+"/undiscovered.save");
-			ObjectInputStream ois3 = new ObjectInputStream (fis3);
-			this.undiscovered= (HashMap<String,HashMap>) ois3.readObject ();
-                        
-                        FileInputStream fis4 = new FileInputStream ("src/resources/savefiles/"+location+"/player.save");
-			ObjectInputStream ois4 = new ObjectInputStream (fis4);
-			this.player= (Player) ois4.readObject ();
-                        
+                    ObjectInputStream ois1;
+                    FileInputStream fis2;
+                    ObjectInputStream ois2;
+                    FileInputStream fis3;
+                    ObjectInputStream ois3;
+                    FileInputStream fis4;
+                    ObjectInputStream ois4;
+                    try (FileInputStream fis1 = new FileInputStream ("src/resources/savefiles/"+location+"/inUse.save")) {
+                        ois1 = new ObjectInputStream (fis1);
+                        Storage.inUse= (HashMap<String,HashMap>) ois1.readObject ();
+                        fis2 = new FileInputStream ("src/resources/savefiles/"+location+"/used.save");
+                        ois2 = new ObjectInputStream (fis2);
+                        Storage.used= (HashMap<String,HashMap>) ois2.readObject ();
+                        fis3 = new FileInputStream ("src/resources/savefiles/"+location+"/undiscovered.save");
+                        ois3 = new ObjectInputStream (fis3);
+                        Storage.undiscovered= (HashMap<String,HashMap>) ois3.readObject ();
+                        fis4 = new FileInputStream ("src/resources/savefiles/"+location+"/player.save");
+                        ois4 = new ObjectInputStream (fis4);
+                        Storage.player= (Player) ois4.readObject ();
                         //FileInputStream fis5 = new FileInputStream ("src/resources/savefiles/"+location+"/current.save");
-			//ObjectInputStream ois5 = new ObjectInputStream (fis5);
-			//this.current= (int) ois5.readObject ();
-			
-			fis1.close();
+                        //ObjectInputStream ois5 = new ObjectInputStream (fis5);
+                        //this.current= (int) ois5.readObject ();
+                    }
 			fis2.close();
 			fis3.close();
                         fis4.close();
@@ -109,10 +114,10 @@ public class Storage implements Serializable {
 	}
 	
 	public void setStorage(HashMap<String,HashMap> inUse, HashMap<String,HashMap> used, HashMap<String,HashMap> undiscovered, Player player) {
-		this.inUse=inUse;
-		this.used=used;
-		this.undiscovered=undiscovered;
-                this.player=player;
+		Storage.inUse=inUse;
+		Storage.used=used;
+		Storage.undiscovered=undiscovered;
+                Storage.player=player;
 	}
 
 	public  static HashMap<String,HashMap> getInUse() {

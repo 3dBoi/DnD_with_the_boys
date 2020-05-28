@@ -5,128 +5,161 @@
  */
 package com.company;
 
-import static java.lang.Integer.max;
 import java.net.URISyntaxException;
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import javafx.util.Duration;
 
 /**
  *
  * @author Janis
  */
-public class Jukebox {
+
+public class Jukebox { 
+    MediaPlayer musicplayer;
     
-     public static MediaPlayer musicplayer;
+    public static Jukebox main = new Jukebox();
+    public static Jukebox gameOver = new Jukebox();
+    public static Jukebox select = new Jukebox();
+    public static Jukebox confirm = new Jukebox();
+    public static Jukebox speech = new Jukebox();
     
-    public void changeMusic(String loc){
+    public static Jukebox templateMusic = new Jukebox();
+    public static Jukebox templateSounds = new Jukebox();
+    
+    public static double volumeSounds = 0.5;
+    public static double volumeMusic = 0.5;
+
+
+    //Hier wird der Pfad gesetzt
+    private void setMusic(String loc){
         
         Media sound = null;
         try {
             sound = new Media(getClass().getResource("/resources/music/" + loc).toURI().toString());
         } catch (URISyntaxException e) {
-            e.printStackTrace();
         }
     
         musicplayer = new MediaPlayer(sound);
-        musicplayer.play();
-                
+    }     
     
-    }
-    public void setVolume(double volume){
-    musicplayer.setVolume(volume);
+   public MediaPlayer getMediaPlayer(){
+     return this.musicplayer;
     }
     
-    public void setAutoPlay(){
-    musicplayer.setAutoPlay(true);
-    }
-    
-    public void pause(){
-    musicplayer.pause();
-    }
+   public void play(){
+   musicplayer.seek(Duration.ZERO);
+   musicplayer.play();
+   }
    
-    
-    
-    public void dispose(){
-    musicplayer.dispose();}
-    
-    public void play(){
-    musicplayer.play();}
-    
-    public void stop(){
-    musicplayer.stop();}
-    
-    public MediaPlayer getMediaPlayer() {
-        return musicplayer;
-	}
-    
-    public void playMainTheme(){
-    changeMusic("MainTheme.wav");
+    public void setMainTheme(){
+     setMusic("MainTheme.wav");
     }
     
-        public void playMainTheme2(){
-    changeMusic("Evan King - 20XX - 07 Quote.wav");
+    public void setMainTheme2(){
+     setMusic("Evan King - 20XX - 07 Quote.wav");
+    }
+    public void setGameOver(){
+     setMusic("mudeth - Game Over.mp3");
     }
     
-     public void playTypecast(){
-    changeMusic("11 Typecast.wav");
+     public void setTypecast(){
+     setMusic("11 Typecast.wav");
+     }
+     
+     public void setBasement(){
+     setMusic("mudeth - Basement.mp3");
      }
     
         
-    public void playTextAdvance(){
-    changeMusic("text_advance_1.wav");
+    public void setTextAdvance(){
+     setMusic("text_advance_1.wav");
     }
     
-     public void playSelect(){
-    changeMusic("select.wav");
+     public void setSelect(){
+     setMusic("select.wav");
     }
      
-    public void playHighlight(){
-    changeMusic("menu_highlight_1.wav");
+     public void setSuccess(){
+     setMusic("45 jingle_success_3.wav");
+    }
+     
+    public void setHighlight(){
+     setMusic("menu_highlight_1.wav");
     }
     
-      public void playConfirm1(){
-    changeMusic("81 menu_confirm_1_dry.wav");
+      public void setConfirm1(){
+     setMusic("81 menu_confirm_1_dry.wav");
     }
       
-    public void playConfirm1Rev(){
-    changeMusic("81 menu_confirm_1_reverb.wav");
+    public void setonfirm1Rev(){
+     setMusic("81 menu_confirm_1_reverb.wav");
     }
     
-    public void playSpeechHigh1(){
-    changeMusic("61 speech_high_1.wav");}
-    
-    
+    public void setSpeechHigh1(){
+     setMusic("61 speech_high_1.wav");}
+
     
     public void playRandomSpeechFemale(){
-        int i = (int)getRandomInt(1,4);
+        Calculator calculator = new Calculator();
+        int i = (int)calculator.getRandomInt(1, 4);
         switch(i){
-            case 1: changeMusic("61 speech_high_1.wav");
+            case 1: setMusic("61 speech_high_1.wav");
+                    musicplayer.setVolume(volumeSounds);
+                    musicplayer.play();
                  break;
-            case 2: changeMusic("62 speech_high_2.wav");
+            case 2: setMusic("62 speech_high_2.wav");
+                     musicplayer.setVolume(volumeSounds);
+                    musicplayer.play();
                  break;
-            case 3: changeMusic("63 speech_high_3.wav");
+            case 3: setMusic("63 speech_high_3.wav");
+                     musicplayer.setVolume(volumeSounds);
+                    musicplayer.play();
                  break;
-            case 4: changeMusic("64 speech_high_4.wav");
+            case 4: setMusic("64 speech_high_4.wav");
+                     musicplayer.setVolume(volumeSounds);
+                    musicplayer.play();
                  break; 
         }
         }
     
      public void playRandomSpeechMale(){
-        int i = (int)getRandomInt(1,4);
+        Calculator calculator = new Calculator();
+        int i = (int)calculator.getRandomInt(1, 4);
         switch(i){
-            case 1: changeMusic("73 speech_lowmid_1.wav");
+            case 1: setMusic("73 speech_lowmid_1.wav");
+                     musicplayer.setVolume(volumeSounds);
+                    musicplayer.play();
                  break;
-            case 2: changeMusic("74 speech_lowmid_2.wav");
+            case 2: setMusic("74 speech_lowmid_2.wav");
+                     musicplayer.setVolume(volumeSounds);
+                    musicplayer.play();
                  break;
-            case 3: changeMusic("75 speech_lowmid_3.wav");
+            case 3: setMusic("75 speech_lowmid_3.wav");
+                     musicplayer.setVolume(volumeSounds);
+                    musicplayer.play();
                  break;
-            case 4: changeMusic("76 speech_lowmid_4.wav");
+            case 4: setMusic("76 speech_lowmid_4.wav");
+                     musicplayer.setVolume(volumeSounds);
+                    musicplayer.play();
                  break; 
         }
         }
+     
+     public static void setAllSoundBoxes(){
+    select.getMediaPlayer().setVolume(volumeSounds);
+    confirm.getMediaPlayer().setVolume(volumeSounds);
+        }
+          
+    public static void setAllMusicBoxes(){
+        main.getMediaPlayer().setVolume(volumeMusic);
+        gameOver.getMediaPlayer().setVolume(volumeMusic);
+        }
+          
+        }
   
-    public double getRandomInt(int min, int max){
-    return Math.random() * (max - min) + min;
-    }
 
-}
+

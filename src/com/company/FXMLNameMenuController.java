@@ -36,8 +36,6 @@ public class FXMLNameMenuController implements Initializable {
     @FXML private Button nameMenuBtnAccept;
     @FXML private Button nameMenuBtnReturn;
 
-    Jukebox jukebox = new Jukebox();
-    Jukebox jukeboxSpeech = new Jukebox();
     
     //Hier wird der Player für das Spiel erstellt
     public static Player player = new Player(100,100,2,10,10,5, "<InsertPlayerName>");
@@ -47,25 +45,19 @@ public class FXMLNameMenuController implements Initializable {
     @FXML private void handleNameMenuBtnAccept(ActionEvent event) throws IOException {
         //Der Name des Spielers darf nicht leer sein!
                 if((nameMenuName.getText().isEmpty() || nameMenuName.getText() == null)){
-                    jukebox.playSelect();
-            labelError.setText("Everybody has a name.");
+                     labelError.setText("Everybody has a name.");
         }
         else{ 
+            //Easter Egg für Munir
             if(nameMenuName.getText().equals("Mii")){
-            jukebox.playSelect();
             labelError.setText("TaKe Me tO cHUrcH");
             }
             else{
                 
         //Die erste StoryCard wird geladen   
-        FXMLMainMenuController.jukeboxMain.getMediaPlayer().pause();
         player.setName(nameMenuName.getText());
         AnchorPane pane = FXMLLoader.load(getClass().getResource("FXMLStoryCard.fxml"));
         nameMenuPane.getChildren().setAll(pane);
-        
-        //Die Jukebox Sounds werden hier geregelt
-        
-        jukebox.playConfirm1();
             }
     }
     }
@@ -74,7 +66,7 @@ public class FXMLNameMenuController implements Initializable {
     @FXML private void onEnter(KeyEvent keyevent) throws IOException {
         ActionEvent event = null;
         if(!(keyevent.getCode().equals(KeyCode.SPACE) || keyevent.getCode().equals(KeyCode.SHIFT) || keyevent.getCode().equals(KeyCode.BACK_SPACE)|| keyevent.getCode().equals(KeyCode.CONTROL))){   
-            jukeboxSpeech.playRandomSpeechMale();
+            Jukebox.speech.playRandomSpeechMale();
         }
         if(keyevent.getCode().equals(KeyCode.ENTER)){
         handleNameMenuBtnAccept(event);
@@ -85,12 +77,11 @@ public class FXMLNameMenuController implements Initializable {
 
     //Hier wird der "Return" Button initialisiert
     @FXML private void handleNameMenuBtnReturn(ActionEvent event) throws IOException {
-        FXMLMainMenuController.jukeboxMain.dispose();
+        Jukebox.main.getMediaPlayer().setVolume(Jukebox.main.getMediaPlayer().getVolume() * 2);
+        Jukebox.select.play();
         //Hier wird die MainMenu Szene geladen    
         AnchorPane pane = FXMLLoader.load(getClass().getResource("FXMLMainMenu.fxml"));
-        nameMenuPane.getChildren().setAll(pane);
-        //Die Jukebox Sounds werden hier geregelt
-        jukebox.playSelect();        
+        nameMenuPane.getChildren().setAll(pane);      
     }
     
         @Override

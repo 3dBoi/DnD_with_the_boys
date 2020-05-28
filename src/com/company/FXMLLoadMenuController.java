@@ -53,11 +53,11 @@ public class FXMLLoadMenuController implements Initializable {
          loadgame = false;
          Storage save1 = new Storage("Save1");
          loadgame= save1.load();
-         this.inUse = save1.getInUse();
-         this.used = save1.getUsed();
-         this.undiscovered = save1.getUndiscovered();
-         this.player = save1.getPlayer();
-         this.current = save1.getCurrent();
+         this.inUse = Storage.getInUse();
+         this.used = Storage.getUsed();
+         this.undiscovered = Storage.getUndiscovered();
+         this.player = Storage.getPlayer();
+         this.current = Storage.getCurrent();
             
     }
      
@@ -65,11 +65,11 @@ public class FXMLLoadMenuController implements Initializable {
          loadgame = false;
          Storage save2 = new Storage("Save2");
          loadgame= save2.load();
-         this.inUse = save2.getInUse();
-         this.used = save2.getUsed();
-         this.undiscovered = save2.getUndiscovered();
-         this.player = save2.getPlayer();
-         this.current = save2.getCurrent();
+         this.inUse = Storage.getInUse();
+         this.used = Storage.getUsed();
+         this.undiscovered = Storage.getUndiscovered();
+         this.player = Storage.getPlayer();
+         this.current = Storage.getCurrent();
         
     }
      
@@ -77,11 +77,11 @@ public class FXMLLoadMenuController implements Initializable {
          loadgame = false;
          Storage save3 = new Storage("Save3");
          loadgame= save3.load();
-         this.inUse = save3.getInUse();
-         this.used = save3.getUsed();
-         this.undiscovered = save3.getUndiscovered();
-         this.player = save3.getPlayer();
-         this.current = save3.getCurrent();
+         this.inUse = Storage.getInUse();
+         this.used = Storage.getUsed();
+         this.undiscovered = Storage.getUndiscovered();
+         this.player = Storage.getPlayer();
+         this.current = Storage.getCurrent();
         
     }
      
@@ -89,11 +89,11 @@ public class FXMLLoadMenuController implements Initializable {
          loadgame = false;
          Storage save4 = new Storage("Save4");
          loadgame= save4.load();
-         this.inUse = save4.getInUse();
-         this.used = save4.getUsed();
-         this.undiscovered = save4.getUndiscovered();
-         this.player = save4.getPlayer();
-         this.current = save4.getCurrent();
+         this.inUse = Storage.getInUse();
+         this.used = Storage.getUsed();
+         this.undiscovered = Storage.getUndiscovered();
+         this.player = Storage.getPlayer();
+         this.current = Storage.getCurrent();
         
     }
      
@@ -101,11 +101,11 @@ public class FXMLLoadMenuController implements Initializable {
          loadgame = false;
          Storage save5 = new Storage("Save5");
          loadgame= save5.load();
-         this.inUse = save5.getInUse();
-         this.used = save5.getUsed();
-         this.undiscovered = save5.getUndiscovered();
-         this.player = save5.getPlayer();
-         this.current = save5.getCurrent();
+         this.inUse = Storage.getInUse();
+         this.used = Storage.getUsed();
+         this.undiscovered = Storage.getUndiscovered();
+         this.player = Storage.getPlayer();
+         this.current = Storage.getCurrent();
         
     }
      
@@ -114,11 +114,11 @@ public class FXMLLoadMenuController implements Initializable {
 
          Storage save6 = new Storage("Save6");
          loadgame= save6.load();
-         this.inUse = save6.getInUse();
-         this.used = save6.getUsed();
-         this.undiscovered = save6.getUndiscovered();
-         this.player = save6.getPlayer();
-         this.current = save6.getCurrent();
+         this.inUse = Storage.getInUse();
+         this.used = Storage.getUsed();
+         this.undiscovered = Storage.getUndiscovered();
+         this.player = Storage.getPlayer();
+         this.current = Storage.getCurrent();
         
     }
      
@@ -135,7 +135,6 @@ public class FXMLLoadMenuController implements Initializable {
          }else{
             Jukebox.main.getMediaPlayer().setVolume(0.2);
             Jukebox.select.getMediaPlayer().play();
-            StoryCard.linecounterMain = 1;
             //Hier wird die StoryCard Szene geladen    
             AnchorPane pane = FXMLLoader.load(getClass().getResource("FXMLNameMenu.fxml"));
             loadMenuPane.getChildren().setAll(pane);
@@ -149,4 +148,3 @@ public class FXMLLoadMenuController implements Initializable {
     }    
     
 }
-

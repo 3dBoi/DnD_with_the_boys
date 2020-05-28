@@ -9,10 +9,8 @@ package com.company;
  *
  * @author Janis
  */
-public class ItemCard extends Card{
+public enum CombatMovesE {
     
-    public ItemCard(String id, String name) {
-        super(id, name);
-    }
+    ITEM, ATTACK, DEFEND
     
 }
