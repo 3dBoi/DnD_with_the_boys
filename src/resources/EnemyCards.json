@@ -1,0 +1,32 @@
+
+{
+	"EnemyCards": [
+		{"id": "E1",	
+		 "main": "Die erste Story Karte",
+		 "sub": "Gefolgt von der zweiten Story Karte??",
+		 "optA": "Nc",
+		 "optB": "Sehr Nc"},
+			
+		{"id": "E2",	
+		 "main": "Die zweite Storykarte",
+		 "sub": "Gefolgt von der dritten Story Karte?",
+		 "optA": "Nice",
+		 "optB": "Sehr nice"},
+		 
+		 {"id": "E3",	
+		 "main": "Die dritte Storykarte",
+		 "sub": "Gefolgt von der vierten Story Karte?",
+		 "optA": "Niceuh",
+		 "optB": "Sehr niceuh"},
+		 
+		 {"id": "E4",	
+		 "main": "Die vierte Storykarte",
+		 "sub": "Gefolgt von der fünften Story Karte?",
+		 "optA": "Niceuhluh",
+		 "optB": "Sehr niceuhluh"}
+
+
+
+
+	]
+}
