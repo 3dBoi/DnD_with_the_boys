@@ -1,16 +1,20 @@
 package com.company;
 
+import java.util.*;
+
 public class EquipmentCard extends ItemCard {
 
+    private final int slot;
     private int attack;
     private double defence;
-    private final int slot;
+    private int critAdd;
 
-    public EquipmentCard(String id, String name, int attack, double defence, int slot) {
-        super(id, name);
+    public EquipmentCard(String name,String id,int attack, double defence, int slot, int critAdd) {
+        super(id,name);
         this.attack = attack;
         this.defence = defence;
         this.slot = slot;
+        this.critAdd= critAdd;
     }
 
     public int getAttack() {
@@ -25,37 +29,44 @@ public class EquipmentCard extends ItemCard {
         return defence;
     }
 
-    public void setDefence(double defence) {
-        this.defence = defence;
 
+        public void setDefence ( double defence){
+            this.defence = defence;
+
+        }
+
+
+        public int getSlot () {
+            return slot;
+        }
+
+        public int getCrit () {
+            return critAdd;
+        }
+
+        public void setCritAdd ( int critAdd){
+            this.critAdd = critAdd;
+        }
+
+        public void equip (EquipmentCard Weapon){
+            if (FXMLNameMenuController.player.Equiped[Weapon.getSlot()] != null) {
+                unequip(FXMLNameMenuController.player.Equiped[Weapon.getSlot()]);
+            }
+            FXMLNameMenuController.player.Equiped[Weapon.getSlot()] = Weapon;
+            FXMLNameMenuController.player.setMaxattack(FXMLNameMenuController.player.getMaxattack() + Weapon.getAttack());
+            FXMLNameMenuController.player.setDefence(FXMLNameMenuController.player.getDefence() - Weapon.getDefence());
+            FXMLNameMenuController.player.setCrit(FXMLNameMenuController.player.getCrit() + Weapon.getCrit());
+        }
+
+        public void unequip (EquipmentCard Weapon){
+            if (FXMLNameMenuController.player.Equiped[Weapon.getSlot()] != null) {
+                FXMLNameMenuController.player.setMaxattack(FXMLNameMenuController.player.getMaxattack() - Weapon.getAttack());
+                FXMLNameMenuController.player.setDefence(FXMLNameMenuController.player.getDefence() + Weapon.getDefence());
+                FXMLNameMenuController.player.setCrit(FXMLNameMenuController.player.getCrit() - Weapon.getCrit());
+                FXMLNameMenuController.player.Equiped[Weapon.getSlot()] = null;
+            }
+
+
+        }
     }
 
-
-/*
-    EquipmentCard Dagger = new EquipmentCard(5, 1);
-    EquipmentCard Club = new EquipmentCard(8, 1);
-    EquipmentCard Mace = new EquipmentCard(11, 1);
-    EquipmentCard Sword = new EquipmentCard(14, 1);
-    EquipmentCard Spear = new EquipmentCard(17,1);
-    EquipmentCard Axe = new EquipmentCard(20, 1);
-    EquipmentCard Warhammer = new EquipmentCard(24, 1);
-    ArrayList<EquipmentCard> EquipmentList = new ArrayList<EquipmentCard>();
-    Player player = new Player(100,100,2,10,10,5);
-    */
-    public void equip(EquipmentCard Weapon){
-
-
-
-
-
-
-
-     //  com.company.Combat.player.setMaxattack(com.company.Combat.player.getMaxattack() + Weapon.getAttack());
-
-    }
-
-    public void unequip(EquipmentCard Weapon){
-
-    }
-
-}
