@@ -13,7 +13,7 @@ public class EnemyCard extends Card implements Character{
 	private int crit;
 	private ArrayList<Integer> moveset = new ArrayList<>();
 	
-	public EnemyCard(String id, String name, int health, int maxhealth, double defence, int attack, int maxattack, int crit, ArrayList<Integer> moveset) {
+	public EnemyCard(String id, String name, int health, int maxhealth, double defence, int attack, int maxattack, int crit) {
 
                 super(id, name);
 		this.health = health;

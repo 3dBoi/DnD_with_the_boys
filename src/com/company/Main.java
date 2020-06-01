@@ -62,6 +62,23 @@ public class Main extends Application {
             System.out.println("JSONException: " + e.getLocalizedMessage());
         }
 
+
+ HashMap<String, EquipmentCard> equipmentCardHashMap = new HashMap<>();
+        try {
+            JSONTokener tokener = new JSONTokener(new FileReader("./src/com/resources/Datenbank.json"));
+            JSONObject object = new JSONObject(tokener);
+            JSONArray items = object.getJSONArray("Items");
+            for (Object o : items) {
+                JSONObject json = (JSONObject) o;       //Schlüssel durch Card id ersetzen
+                equipmentCardHashMap.put((String) json.get("id"), new EquipmentCard((String) json.get("name"), (String)json.get ("id"), (int) json.get("attack"), (double) (Integer) json.get("defence"), (int) json.get("slot"), (int) json.get("critAdd")));
+                //   equipmentCardHashMap.put((String) json.get("name"), new EquipmentCard((String) json.get("name"), (int) json.get("attack"), (double) json.get("defence"), (int) json.get("slot")));
+            }
+        } catch (FileNotFoundException f) {
+            System.out.println("FileNotFound: " + f.getLocalizedMessage());
+        } catch (JSONException e) {
+            System.out.println("JSONException: " + e.getLocalizedMessage());
+        }
+
         
         //Jukeboxes werden geladen, für Musik
         Jukebox.main.setBasement();

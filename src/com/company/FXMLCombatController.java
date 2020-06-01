@@ -37,7 +37,7 @@ public class FXMLCombatController implements Initializable {
     @FXML private Label combatLabelPlayerCRIT;
     @FXML private Label combatLabelEnemyHP;
     @FXML private Label combatLabelEnemyName;
-    public static EnemyCard enemy = new EnemyCard("E1", "Slime", 100,100,2,10,10,5, EnemyCard.generateMoveset());
+    public static EnemyCard enemy = new EnemyCard("E1", "Slime", 100,100,2,10,10,5);
     static CombatMovesE playermove;
     public static int counter = 0;
 
