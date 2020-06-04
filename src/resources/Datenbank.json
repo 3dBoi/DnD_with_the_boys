@@ -1,11 +1,173 @@
+
 {
-    "Items": [
-        {"name": "Dagger", 	"attack": 5,	"defence":0, "slot":  1,	"critAdd": 5},
-        {"name": "Club", 	"attack": 8, 	"defence":0, "slot":  1,	"critAdd": 3},
-        {"name": "Mace", 	"attack": 11,	"defence":0, "slot":  1,	"critAdd": 5},
-        {"name": "Sword", 	"attack": 14, 	"defence":0, "slot":  1,	"critAdd": 4},
-        {"name": "Spear", 	"attack": 18,	"defence":0, "slot":  1,	"critAdd": 7},
-        {"name": "Axe", 	"attack": 21, 	"defence":0, "slot":  1,	"critAdd": 5},
-        {"name": "Warhammer", 	"attack": 25, 	"defence":0, "slot":  1,	"critAdd": 8}
-    ]
+        
+    
+	"StoryCards": [
+		{"id": "s1",	
+		 "name": "Erste Karte",
+		 "main": "Willst du rechts am Fluss entlang oder links?",
+		 "sub": "-w-  TEXT UNTER WARTUNG  -w-",
+		 "optA": "Rechts",
+		 "optB": "Links"},
+			
+		{"id": "s2",	
+		 "name": "Zweite Karte",
+		 "main": "Willst du mit dem Dorfbewohnern reden?",
+		 "sub": "	凸ಠ益ಠ)凸	",
+		 "optA": "ja",
+		 "optB": "nein"},
+		 
+		 {"id": "s3",	
+		  "name": "Dritte Karte",
+		 "main": "Da vorne ist ein Kampf…",
+		 "sub": "YEET, und da fliegt der Kontext",
+		 "optA": "…lauf hin!",
+		 "optB": "…lauf weg!"},
+		 
+		 {"id": "s4",	
+		  "name": "Vierte Karte",
+		 "main": "Willst du jetzt zu dem Minotauros gehen?",
+		 "sub": "Gemeinsam sind wir Team Rocket, so schnell wie das Licht! Gebt lieber auf und bekämpft uns nicht! Miauz, genau! Woingenau!",
+		 "optA": "Ja",
+		 "optB": "Nein, später"},
+
+		 {"id": "s5",	
+		  "name": "Fünfte Karte",
+		 "main": "Willst du die Herausforderung annehmen?",
+		 "sub": "Das war mal wieder ein Schuss in den Ofen",
+		 "optA": "Klar",
+		 "optB": "Lieber nicht!"},
+
+		{"id": "s6",	
+		  "name": "Sechste Karte",
+		 "main": "Einer der Götter will dich sprechen…",
+		 "sub": "Das war mal wieder ein Schuss in den Ofen",
+		 "optA": "Ich gehe hin!",
+		 "optB": "Ich gehe nicht hin!"},
+
+		{"id": "s7",	
+		  "name": "Siebte Karte",
+		 "main": "Wen willst du bekämpfen?",
+		 "sub": "Du kriegst auch Donuts als Belohnung wenn du siegst",
+		 "optA": "Den Minotauros.",
+		 "optB": "Medusa."},
+
+		{"id": "s8",	
+		  "name": "Achte Karte",
+		 "main": "Willst du kämpfen?",
+		 "sub": "UwU oder OwO, was ist dein Still  >W<.",
+		 "optA": "Ja",
+		 "optB": "Nein"}
+	],
+
+        
+        "Items": [
+        {"name": "Dagger",          "id": "i1",     "attack": 5,	"defence":0.0,      "slot":  "WEAPON",	"critAdd": 5},
+		{"name": "Rusty Helmet",    "id": "i2",     "attack": 0,	"defence":5.0,      "slot":  "HEAD",         "critAdd": 0},
+        {"name": "Club",            "id": "i3",     "attack": 8, 	"defence":0.0,      "slot":  "WEAPON",	"critAdd": 3},
+        {"name": "Mace",            "id": "i4",     "attack": 11,	"defence":0.0,      "slot":  "WEAPON",	"critAdd": 5},
+        {"name": "Sword",           "id": "i5",     "attack": 14, 	"defence":0.0,      "slot":  "WEAPON",	"critAdd": 4},
+        {"name": "Spear",           "id": "i6",     "attack": 18,	"defence":0.0,      "slot":  "WEAPON",	"critAdd": 7},
+        {"name": "Axe",             "id": "i7",     "attack": 21, 	"defence":0.0,      "slot":  "WEAPON",	"critAdd": 5},
+        {"name": "Warhammer",       "id": "i8",     "attack": 25, 	"defence":0.0,      "slot":  "WEAPON",	"critAdd": 8}
+    ],
+	
+
+	 "Consumables":[
+	{"name": "healthPotion",            "id": "C1",     "dmg": 0,	"heal": 20, 	"effectDuration": 1, 	"defence":0.0},
+	{"name": "healthPotion++",          "id": "C2",     "dmg": 0,	"heal": 50,	"effectDuration": 1,	"defence":0.0},
+	{"name": "greek fire",              "id": "C3",     "dmg": 8,	"heal": 0,	"effectDuration": 4,	"defence":0.0},
+	{"name": "littleBOOM",              "id": "C4",     "dmg": 8,	"heal": 0,	"effectDuration": 1,	"defence":0.0},
+	{"name": "spell of P",              "id": "C5",     "dmg": 0,	"heal": 0,	"effectDuration": 1,	"defence":0.5},
+	{"name": "spell of pow",            "id": "C6",     "dmg": 0,	"heal": 0,	"effectDuration": 4,	"defence":0.5},
+	{"name": "ONE for All",             "id": "C7",     "dmg": 5,	"heal": 5,	"effectDuration": 3,	"defence":0.25}
+   ],
+
+
+    
+    "EnemyCards": [
+		 {"id": "e1",	
+                 "name": "Slime",
+		 "health": 50,
+		 "maxhealth": 50,
+		 "defence": 0.0,
+		 "attack": 5,
+		 "maxattack": 5,
+		 "crit": 0
+		 },
+                 	
+		{"id": "e2",	
+		 "name": "Skeleton",
+		 "health": 75,
+		 "maxhealth": 75,
+		 "defence": 2.0,
+		 "attack": 6,
+		 "maxattack": 6,
+		 "crit": 2
+		 },
+		
+		{"id": "e3",	
+		 "name": "Harpyie",
+		 "health": 50,
+		 "maxhealth": 50,
+		 "defence": 0.0,
+		 "attack": 13,
+		 "maxattack": 13,
+		 "crit": 3
+		 },
+
+		{"id": "e4",	
+		 "name": "Kentaur",
+		 "health": 75,
+		 "maxhealth": 75,
+		 "defence": 0.0,
+		 "attack": 9,
+		 "maxattack": 9,
+		 "crit": 2
+		 },
+
+		{"id": "e5",	
+		 "name": "Sphinx",
+		 "health": 150,
+		 "maxhealth": 175,
+		 "defence": 3.0,
+		 "attack": 10,
+		 "maxattack": 10,
+		 "crit": 5
+		 },
+
+		{"id": "e6",	
+		 "name": "Hydra",
+		 "health": 999,
+		 "maxhealth": 999,
+		 "defence": 2.0,
+		 "attack": 26,
+		 "maxattack": 26,
+		 "crit": 20
+		 },
+
+		{"id": "e7",	
+		 "name": "Medusa",
+		 "health": 80,
+		 "maxhealth": 80,
+		 "defence": 0.0,
+		 "attack": 26,
+		 "maxattack": 26,
+		 "crit": 20
+		 },
+
+		{"id": "e8",	
+		 "name": "Minotaurus",
+		 "health": 300,
+		 "maxhealth": 300,
+		 "defence": 4.0,
+		 "attack": 30,
+		 "maxattack": 30,
+		 "crit": 15
+		 }	
+		
+
+	]
+
+	
 }
