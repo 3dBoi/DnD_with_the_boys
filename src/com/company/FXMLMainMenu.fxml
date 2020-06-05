@@ -6,10 +6,10 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="mainMenuPane" prefHeight="800.0" prefWidth="1280.0" style="-fx-background-color: #272744;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.company.FXMLMainMenuController">
+<AnchorPane id="AnchorPane" fx:id="mainMenuPane" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.company.FXMLMainMenuController">
    <children>
       <Label fx:id="label" layoutX="116.0" layoutY="252.0" prefHeight="43.0" prefWidth="275.0" />
-      <Label fx:id="labelHeadline" layoutX="315.0" layoutY="69.0" prefHeight="115.0" prefWidth="650.0" text="DnD_with_the_boys" textFill="#fffefe">
+      <Label fx:id="labelHeadline" layoutX="315.0" layoutY="69.0" prefHeight="115.0" prefWidth="650.0" text="DnD_with_the_boys">
          <font>
             <Font name="Arimo Bold" size="68.0" />
          </font>
@@ -33,11 +33,6 @@
       <ImageView fx:id="imgExitGame" fitHeight="70.0" fitWidth="275.0" layoutX="503.0" layoutY="627.0" onMousePressed="#handleButtonExitAction" onMouseReleased="#handleButtonExitActionReleased" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../resources/textures/MenuSprites/MainMenuBtnExitGame.png" />
-         </image>
-      </ImageView>
-      <ImageView fx:id="test" fitHeight="232.0" fitWidth="256.0" layoutX="525.0" layoutY="179.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../resources/textures/MenuSprites/Rabbit%20god.gif" />
          </image>
       </ImageView>
    </children>

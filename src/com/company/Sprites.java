@@ -25,10 +25,12 @@ public class Sprites {
             return image;
             }
             
-//            public Image displayImage(String loc) throws URISyntaxException{
-//            image = new Image(getClass().getResource("/resources/textures/MenuSprites/"+loc).toURI().toString());
-//            return image;
-//            }
+            public Image displayEnemy(String loc){   
+            InputStream input= getClass().getResourceAsStream("/resources/textures/Gegner/"+loc+".gif");
+            image = new Image(input);
+            return image;
+            }
+            
             
             public Image displayMainMenuBtnNewGame() throws URISyntaxException{
                 return displayImage("MainMenuBtnNewGame.png");

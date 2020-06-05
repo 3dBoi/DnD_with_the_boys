@@ -41,7 +41,12 @@ public class FXMLStoryCardController implements Initializable {
     @FXML public Button buttonStoryCardBack;
     
     //Enthält die ID der aktuellen Karte, wichtig für Algorithmen
-    public static int currentID;
+    public static int currentID; 
+    
+    
+    //////Später löschen///////////
+    @FXML private Button weaponA;
+    @FXML private Button weaponB;
     
     
     
@@ -85,15 +90,16 @@ public class FXMLStoryCardController implements Initializable {
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////
     //Die Paramter des erstellen Objekts "MainStoryCard" werden übergeben, um die Labels und Buttons upzudaten//
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////
-    
-    @FXML public void update(MainStoryCard card){
+    public void update(MainStoryCard card){
         this.labelStoryCardMain.setText(card.getMain());
         this.labelStoryCardSub.setText(card.getSub());
         this.buttonStoryCardOptA.setText(card.getOptA());
         this.buttonStoryCardOptB.setText(card.getOptB());
         this.labelStoryCardID.setText(card.getId());
-        currentID = Integer.parseInt(card.getId());
+        currentID = Integer.parseInt(card.getId().substring(1));
     }
+    
+   
     
     //Die Events für die jeweiligen IDs der Karten werden hier gehandelt
     //Es wird geguckt, welcher Typ von Karte nach der jetzigen folgt
@@ -114,6 +120,9 @@ public class FXMLStoryCardController implements Initializable {
         }
     }
     
+    //////////////////////////////////////////////////////////////////////////////////////////////////
+    //Die Algorithmen der Story Karten sollten vielleicht in die Story Karte Klasse verlagert werden//
+    /////////////////////////////////////////////////////////////////////////////////////////////////
     public CardsE nextIsStory(CardsE nextCard){
         return nextCard = CardsE.STORYCARD;
     }
@@ -140,17 +149,19 @@ public class FXMLStoryCardController implements Initializable {
      //Das passiert, wenn die Szene aufgerufen wird//
      /////Es wird eine neue Story Karte geladen//////
      ////////////////////////////////////////////////
-    @FXML @Override public void initialize(URL url, ResourceBundle rb) {
+ @Override public void initialize(URL url, ResourceBundle rb) {
         
         //Eine neue Karte wird erstellt
-        MainStoryCard newCard = Main.MainStoryCardsHashMap.get("1");
+        MainStoryCard newCard = Main.MainStoryCardsHashMap.get("s1");
         //Die ID der Karte wird gespeichert
-        currentID = Integer.parseInt(newCard.getId());
+        currentID = Integer.parseInt(newCard.getId().substring(1));
         //Die Szenen-Elemente werden mit der neuen Karte aktualisiert
         update(newCard);
         //Für Dokumentation - wird später entfernt (?)
         labelPlayerName.setText(FXMLNameMenuController.player.getName());
 
     }    
+
+  
     
 }

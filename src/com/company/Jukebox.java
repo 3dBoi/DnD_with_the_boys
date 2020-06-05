@@ -6,9 +6,6 @@
 package com.company;
 
 import java.net.URISyntaxException;
-import javafx.animation.KeyFrame;
-import javafx.animation.KeyValue;
-import javafx.animation.Timeline;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.util.Duration;
@@ -19,8 +16,12 @@ import javafx.util.Duration;
  */
 
 public class Jukebox { 
-    MediaPlayer musicplayer;
     
+    /////////////////////////////////////////////////////////////////////////////////////////
+    //Die Jukebox ist dafür da, jegliche Soundeffekte zu organisieren und ggf. zu verändern//
+    /////////////////////////////////////////////////////////////////////////////////////////
+    
+    MediaPlayer musicplayer;
     public static Jukebox main = new Jukebox();
     public static Jukebox gameOver = new Jukebox();
     public static Jukebox select = new Jukebox();
@@ -36,24 +37,21 @@ public class Jukebox {
 
     //Hier wird der Pfad gesetzt
     private void setMusic(String loc){
-        
         Media sound = null;
         try {
             sound = new Media(getClass().getResource("/resources/music/" + loc).toURI().toString());
         } catch (URISyntaxException e) {
         }
-    
         musicplayer = new MediaPlayer(sound);
     }     
-    
-   public MediaPlayer getMediaPlayer(){
-     return this.musicplayer;
-    }
-    
+
    public void play(){
+   //Der Player wird von 0 gestartet und am Ende disposed, um Ressourcen zu sparen
    musicplayer.seek(Duration.ZERO);
    musicplayer.play();
-   }
+   musicplayer.setOnEndOfMedia(() ->{
+    musicplayer.dispose();
+   }); }
    
     public void setMainTheme(){
      setMusic("MainTheme.wav");
@@ -158,6 +156,10 @@ public class Jukebox {
         main.getMediaPlayer().setVolume(volumeMusic);
         gameOver.getMediaPlayer().setVolume(volumeMusic);
         }
+    
+       public MediaPlayer getMediaPlayer(){
+     return this.musicplayer;
+    }
           
         }
   

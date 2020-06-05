@@ -1,10 +1,11 @@
 package com.company;
 
 import java.util.ArrayList;
+import javafx.scene.image.Image;
 
 public class EnemyCard extends Card implements Character{
 	
-    
+        private Image sprite = null;
 	private int health;
 	private int maxhealth;
 	private double defence;
@@ -23,11 +24,19 @@ public class EnemyCard extends Card implements Character{
 		this.maxattack = maxattack;
 		this.crit = crit;
 		this.moveset = generateMoveset();
+                
+                //Keine Ahnung, warum das nur mit try und catch geht, aber es klappt so
+                //Die Sprites müssen in dem Texturen Ordner den selben Namen haben, wie das Monster
+                //Die Endung ist automatisch als .gif in der Sprite Klasse !
+                try{ Sprites sp = new Sprites();
+            this.sprite = sp.displayEnemy(name);
+        }
+                catch(Exception e){
 	}
+        }
 	
 	@Override public double performDefence() {
-		return defence;
-	}
+		return defence;}
 	
 	@Override public int performAttack() {
 		
@@ -41,8 +50,7 @@ public class EnemyCard extends Card implements Character{
 	}
 	
 	@Override public void resetAttack() {
-		attack = maxattack;
-	}
+		attack = maxattack;}
         
         //Das Moveset für den Gegner wird hier erstellt
         //Muss aber noch überarbeitet werden!
@@ -64,28 +72,28 @@ public class EnemyCard extends Card implements Character{
 	
 	
 	public int getHealth() {
-		return health;
-	}
+		return health;}
 
 	public void setHealth(int health) {
-		this.health = health;
-	}
+		this.health = health;}
 
 	public int getMaxhealth() {
-		return maxhealth;
-	}
+		return maxhealth;}
 
 	public void setMaxhealth(int maxhealth) {
-		this.maxhealth = maxhealth;
-	}
+		this.maxhealth = maxhealth;}
 
 	public double getDefence() {
-		return defence;
-	}
+		return defence;}
 
 	public void setDefence(double defence) {
 		this.defence = defence;
 	}
+        
+        public Image getImage(){
+        return this.sprite;}
+        
+
 
 	public int getAttack() {
 		return attack;
@@ -118,6 +126,12 @@ public class EnemyCard extends Card implements Character{
 	public void setMoveset(ArrayList<Integer> moveset) {
 		this.moveset = moveset;
 	}
+        
+            @Override
+             public String toString(){
+             return "ID: " + getId() + "\n"+
+                     "Name: " + getName() + "\n";
+             }
 	
 	
 }

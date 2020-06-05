@@ -21,10 +21,14 @@ import org.json.JSONTokener;
 
 
 public class Main extends Application {
-
-    public static HashMap<String, MainStoryCard> MainStoryCardsHashMap;
-    public static HashMap<String, EnemyCard> EnemyCardsHashMap;
-    public static HashMap<String, ItemCard> ItemCardsHashMap;
+    
+        /////////////////////////////////////////////////////////////////////////////////////////   
+        //Die drei HashMaps sollten vielleicht in eine eigene Loading-Klasse verschoben werden?//
+        /////////////////////////////////////////////////////////////////////////////////////////
+    
+         public static HashMap<String, MainStoryCard> MainStoryCardsHashMap;
+         public static HashMap<String, EnemyCard> EnemyCardsHashMap;
+         public static HashMap<String, EquipmentCard> EquipmentCardsHashMap;
  
 
     @Override
@@ -34,73 +38,73 @@ public class Main extends Application {
         //Ein neues Fenster mit einer Scene wird erstellt//
         ///////////////////////////////////////////////////
         
-         FXMLLoader loader = new FXMLLoader(getClass().getResource("FXMLMainMenu.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("FXMLMainMenu.fxml"));
         Parent root;
         root = FXMLLoader.load(getClass().getResource("FXMLMainMenu.fxml"));
         Scene scene = new Scene(root);
         stage.setScene(scene);
         stage.show();
         
+        
+        
         ///////////////////////////////////////////////////////////////////////
         //Alle Story Karten, Enemy Karten und Item Karten werden hier geladen//
         ///////////////////////////////////////////////////////////////////////
+             //Später in NameMenuController verschieben! Bzw. laden!//
+             /////////////////////////////////////////////////////////
         
-        ItemCardsHashMap = new HashMap<>();
         EnemyCardsHashMap = new HashMap<>();
-        MainStoryCardsHashMap = new HashMap<>();      
+        MainStoryCardsHashMap = new HashMap<>();  
+        EquipmentCardsHashMap = new HashMap<>();
+        
         try {
-            JSONTokener storyCardTokener = new JSONTokener(new FileReader("./src/resources/MainStoryCards.json"));
+            JSONTokener storyCardTokener = new JSONTokener(new FileReader("./src/resources/Datenbank.json"));
             JSONObject storyCardObject = new JSONObject(storyCardTokener);
-            JSONArray items = storyCardObject.getJSONArray("StoryCards");
-            for (Object o: items) {
+            JSONArray storyCards = storyCardObject.getJSONArray("StoryCards");
+            
+            //Hier werden die StoryKarten eingelesen
+            for (Object o: storyCards) {
                 JSONObject json = (JSONObject) o;
                 MainStoryCardsHashMap.put((String) json.get("id"), new MainStoryCard((String) json.get("id"), (String) json.get("name"), (String) json.get("main"), (String) json.get("sub"), (String) json.get("optA"), (String) json.get("optB")));
             }
-        } catch (FileNotFoundException f) {
-            System.out.println("FileNotFound: " + f.getLocalizedMessage());
-        } catch (JSONException e) {
-            System.out.println("JSONException: " + e.getLocalizedMessage());
-        }
-
-
- HashMap<String, EquipmentCard> equipmentCardHashMap = new HashMap<>();
-        try {
-            JSONTokener tokener = new JSONTokener(new FileReader("./src/com/resources/Datenbank.json"));
-            JSONObject object = new JSONObject(tokener);
-            JSONArray items = object.getJSONArray("Items");
-            for (Object o : items) {
-                JSONObject json = (JSONObject) o;       //Schlüssel durch Card id ersetzen
-                equipmentCardHashMap.put((String) json.get("id"), new EquipmentCard((String) json.get("name"), (String)json.get ("id"), (int) json.get("attack"), (double) (Integer) json.get("defence"), (int) json.get("slot"), (int) json.get("critAdd")));
-                //   equipmentCardHashMap.put((String) json.get("name"), new EquipmentCard((String) json.get("name"), (int) json.get("attack"), (double) json.get("defence"), (int) json.get("slot")));
+            
+            //Hier werden die EnemyKarten eingelesen
+             JSONArray enemies = storyCardObject.getJSONArray("EnemyCards");
+            for (Object o: enemies) {
+                JSONObject json = (JSONObject) o;
+                EnemyCardsHashMap.put((String) json.get("id"), new EnemyCard((String) json.get("id"), (String) json.get("name"), (int) json.get("health"), (int) json.get("maxhealth"), (double) json.get("defence"), (int) json.get("attack"), (int) json.get("maxattack"), (int) json.get("crit")));
             }
+            
+            //Hier werden die EquipmentCards eingelesen
+             JSONArray equipment = storyCardObject.getJSONArray("Items");
+            for (Object o: equipment) {
+                JSONObject json = (JSONObject) o;
+                EquipmentCardsHashMap.put((String) json.get("id"), new EquipmentCard((String) json.get("name"), (String)json.get ("id"), (int) json.get("attack"), (double) json.get("defence"), SlotsE.valueOf((String) json.get("slot")), (int) json.get("critAdd")));
+            }
+            
+            
         } catch (FileNotFoundException f) {
             System.out.println("FileNotFound: " + f.getLocalizedMessage());
         } catch (JSONException e) {
             System.out.println("JSONException: " + e.getLocalizedMessage());
         }
+        
+
 
         
         //Jukeboxes werden geladen, für Musik
-        Jukebox.main.setBasement();
+        Jukebox.main.setMainTheme();
         Jukebox.gameOver.setGameOver();
         Jukebox.select.setSelect();
         Jukebox.confirm.setConfirm1();
         Jukebox.main.getMediaPlayer().play();
         Jukebox.main.getMediaPlayer().setVolume(Jukebox.volumeMusic);
 
-        System.out.println(Jukebox.main.musicplayer.getVolume());
-
-        
-        //custom Font wird hier geladen
-        
-        //Alle MediaPlayer werden hier geladen
-        
-        
-        
     }
     
     public static void main(String[] args) {
                 launch(args);
+         
                 
     }
     

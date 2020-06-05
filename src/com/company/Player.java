@@ -1,8 +1,9 @@
 package com.company;
 
-public class Player implements Character{
+import java.util.ArrayList;
 
-	public EquipmentCard[] Equiped = new EquipmentCard[10];
+public class Player implements Character{
+	
 	private int health;
 	private int maxhealth;
 	private double defence;
@@ -10,6 +11,7 @@ public class Player implements Character{
 	private int maxattack;
 	private int crit;
         private String name;
+        private Inventory inventory;
 	
 	public Player(int health, int maxhealth, double defence, int attack, int maxattack, int crit, String name) {
 		this.health = health;
@@ -18,7 +20,8 @@ public class Player implements Character{
 		this.attack = attack;
 		this.maxattack = maxattack;
 		this.crit = crit;
-                this.name = name;             
+                this.name = name;
+                inventory = new Inventory();
 	}
 	
 	@Override
@@ -98,6 +101,18 @@ public class Player implements Character{
         
         public String getName(){
             return name;}
+
+    public Inventory getInventory() {
+        return inventory;
+    }
+
+    public void setInventory(Inventory inventory) {
+        this.inventory = inventory;
+    }
+        
+        
+        
+
 	
 	
 

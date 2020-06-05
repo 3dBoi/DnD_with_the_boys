@@ -1,52 +1,85 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane fx:id="combatPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.company.FXMLCombatController">
    <children>
-      <Button fx:id="combatButnAttack" layoutX="341.0" layoutY="468.0" mnemonicParsing="false" onAction="#handleCombatBtnAttack" prefHeight="62.0" prefWidth="144.0" text="ATTACK" />
-      <Button fx:id="combatBtnDefend" layoutX="341.0" layoutY="553.0" mnemonicParsing="false" onAction="#handleCombatBtnDefend" prefHeight="62.0" prefWidth="144.0" text="DEFEND" />
-      <Button fx:id="combatBtnItems" layoutX="341.0" layoutY="640.0" mnemonicParsing="false" onAction="#handleCombatBtnItems" prefHeight="62.0" prefWidth="144.0" text="ITEMS" />
-      <Label fx:id="labelCombatUpdates" layoutX="413.0" layoutY="400.0" prefHeight="40.0" prefWidth="455.0" textFill="#cd2b2b" />
-      <ImageView fitHeight="168.0" fitWidth="144.0" layoutX="580.0" layoutY="92.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../resources/textures/Gegner/BouncingSlime.gif" />
-         </image>
-      </ImageView>
-      <Label fx:id="combatLabelEnemyHP" layoutX="807.0" layoutY="92.0" prefHeight="40.0" prefWidth="158.0" text="HP: &lt;EnemyHP&gt;" textFill="WHITE">
+      <Button fx:id="combatButnAttack" layoutX="490.0" layoutY="637.0" mnemonicParsing="false" onAction="#handleCombatBtnAttack" prefHeight="62.0" prefWidth="144.0" text="ATTACK" />
+      <Button fx:id="combatBtnDefend" layoutX="648.0" layoutY="637.0" mnemonicParsing="false" onAction="#handleCombatBtnDefend" prefHeight="62.0" prefWidth="144.0" text="DEFEND" />
+      <Button fx:id="combatBtnItems" layoutX="569.0" layoutY="716.0" mnemonicParsing="false" onAction="#handleCombatBtnItems" prefHeight="62.0" prefWidth="144.0" text="ITEMS" />
+      <Label fx:id="labelCombatUpdates" layoutX="67.0" layoutY="480.0" prefHeight="40.0" prefWidth="455.0" textFill="#cd2b2b" />
+      <Label fx:id="combatLabelPlayerHP" layoutX="571.0" layoutY="468.0" prefHeight="30.0" prefWidth="158.0" text="HP: &lt;Player HP&gt;">
          <font>
             <Font size="15.0" />
          </font>
       </Label>
-      <Label fx:id="combatLabelEnemyName" alignment="CENTER" layoutX="561.0" layoutY="26.0" prefHeight="40.0" prefWidth="158.0" text="&lt;Enemy Name&gt;" textFill="WHITE">
+      <Label fx:id="combatLabelPlayerAD" layoutX="571.0" layoutY="498.0" prefHeight="30.0" prefWidth="158.0" text="AD: &lt;Player AD&gt;">
          <font>
             <Font size="15.0" />
          </font>
       </Label>
-      <Label fx:id="combatLabelPlayerHP" layoutX="571.0" layoutY="468.0" prefHeight="30.0" prefWidth="158.0" text="HP: &lt;Player HP&gt;" textFill="WHITE">
+      <Label fx:id="combatLabelPlayerDEF" layoutX="571.0" layoutY="528.0" prefHeight="30.0" prefWidth="158.0" text="DEF: &lt;Player Def&gt;">
          <font>
             <Font size="15.0" />
          </font>
       </Label>
-      <Label fx:id="combatLabelPlayerAD" layoutX="571.0" layoutY="498.0" prefHeight="30.0" prefWidth="158.0" text="AD: &lt;Player AD&gt;" textFill="WHITE">
+      <Label fx:id="combatLabelPlayerCRIT" layoutX="571.0" layoutY="558.0" prefHeight="30.0" prefWidth="158.0" text="CRIT: &lt;Player Crit&gt;">
          <font>
             <Font size="15.0" />
          </font>
       </Label>
-      <Label fx:id="combatLabelPlayerDEF" layoutX="571.0" layoutY="528.0" prefHeight="30.0" prefWidth="158.0" text="DEF: &lt;Player Def&gt;" textFill="WHITE">
-         <font>
-            <Font size="15.0" />
-         </font>
-      </Label>
-      <Label fx:id="combatLabelPlayerCRIT" layoutX="571.0" layoutY="558.0" prefHeight="30.0" prefWidth="158.0" text="CRIT: &lt;Player Crit&gt;" textFill="WHITE">
-         <font>
-            <Font size="15.0" />
-         </font>
-      </Label>
+      <Button fx:id="devmodeEquip" disable="true" layoutX="988.0" layoutY="722.0" mnemonicParsing="false" onAction="#equipDevomode" text="Equip" visible="false" />
+      <Button fx:id="devmodeUnequip" disable="true" layoutX="1113.0" layoutY="722.0" mnemonicParsing="false" onAction="#unequipDevmode" text="Unequip" visible="false" />
+      <TableView fx:id="godmodeTableview" disable="true" layoutX="936.0" layoutY="292.0" prefHeight="415.0" prefWidth="286.0" visible="false">
+        <columns>
+          <TableColumn fx:id="objectIdColumn" prefWidth="40.0" text="ID" />
+          <TableColumn fx:id="objectNameColumn" prefWidth="81.0" text="Name" />
+            <TableColumn fx:id="objectSlotColumn" prefWidth="74.0" text="Slot" />
+            <TableColumn fx:id="objectAdColumn" prefWidth="42.0" text="AD" />
+            <TableColumn fx:id="objectDefColumn" prefWidth="47.0" text="DEF" />
+        </columns>
+      </TableView>
+      <StackPane layoutX="500.0" layoutY="40.0" prefHeight="567.0" prefWidth="300.0">
+         <children>
+            <ImageView fx:id="enemySprite" fitHeight="331.0" fitWidth="269.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../resources/textures/Gegner/Slime.gif" />
+               </image>
+               <StackPane.margin>
+                  <Insets bottom="65.0" />
+               </StackPane.margin>
+            </ImageView>
+            <ImageView fx:id="enemyCardTemplate" fitHeight="575.0" fitWidth="300.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../resources/textures/MenuSprites/EnemyCardTemplate.png" />
+               </image>
+            </ImageView>
+            <Label fx:id="combatLabelEnemyHP" contentDisplay="TOP" prefHeight="86.0" prefWidth="286.0" style="-fx-letter-spacing: 3em;" stylesheets="@../../resources/styles/pixelStyle.css" text="100" textFill="#ff2525" textOverrun="CLIP">
+               <font>
+                  <Font name="Arial Unicode MS" size="21.0" />
+               </font>
+               <padding>
+                  <Insets left="70.0" top="465.0" />
+               </padding>
+            </Label>
+            <Label fx:id="combatLabelEnemyName" alignment="CENTER" contentDisplay="TOP" prefHeight="30.0" prefWidth="193.0" stylesheets="@../../resources/styles/pixelStyle.css" text="SLIME" textFill="WHITE">
+               <font>
+                  <Font name="Augusta Regular" size="23.0" />
+               </font>
+               <padding>
+                  <Insets bottom="470.0" />
+               </padding>
+            </Label>
+         </children>
+      </StackPane>
    </children>
 </AnchorPane>
