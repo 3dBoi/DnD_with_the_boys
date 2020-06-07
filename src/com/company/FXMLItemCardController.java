@@ -11,6 +11,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.Tooltip;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
@@ -26,10 +28,10 @@ public class FXMLItemCardController implements Initializable {
     @FXML private AnchorPane itemCardPane;
     @FXML private StackPane itemCardStackPane;
     @FXML private Text textOpener;
-    @FXML private Text textItem;
-    @FXML private Text textItemStats;
+    @FXML private Label textItem;
     @FXML private Button buttonEquip;
     @FXML private Button buttonAddInventory;
+    @FXML private Tooltip itemTooltip;
 
     /**
      * Initializes the controller class.
@@ -45,7 +47,7 @@ public class FXMLItemCardController implements Initializable {
     public void create(ItemCard card){
     textItem.setText(card.getName());
     if(card instanceof EquipmentCard){
-    textItemStats.setText("AD: "+ ((EquipmentCard) card).getAttack() + " , DEF: " + ((EquipmentCard) card).getDefence());
+    itemTooltip.setText("AD: "+ ((EquipmentCard) card).getAttack() + " , DEF: " + ((EquipmentCard) card).getDefence());
     }
     else{
     buttonEquip.setVisible(false);

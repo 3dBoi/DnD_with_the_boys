@@ -31,8 +31,8 @@ public class Jukebox {
     public static Jukebox templateMusic = new Jukebox();
     public static Jukebox templateSounds = new Jukebox();
     
-    public static double volumeSounds = 0.5;
-    public static double volumeMusic = 0.5;
+    public static double volumeSounds = 0.2;
+    public static double volumeMusic = 0.2;
 
 
     //Hier wird der Pfad gesetzt
