@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+
+<AnchorPane id="AnchorPane" fx:id="itemCardPane" prefHeight="800.0" prefWidth="1280.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/11.0.1" fx:controller="com.company.FXMLItemCardController">
+   <children>
+      <StackPane fx:id="itemCardStackPane" layoutX="503.0" layoutY="31.0" prefHeight="568.0" prefWidth="300.0">
+         <children>
+            <Text fx:id="textOpener" strokeType="OUTSIDE" strokeWidth="0.0" text="You find">
+               <font>
+                  <Font size="46.0" />
+               </font>
+               <StackPane.margin>
+                  <Insets bottom="150.0" />
+               </StackPane.margin>
+            </Text>
+            <Text fx:id="textItem" fill="#0099ff" strokeType="OUTSIDE" strokeWidth="0.0" text="&lt;Item&gt;">
+               <font>
+                  <Font size="35.0" />
+               </font>
+            </Text>
+            <Text fx:id="textItemStats" strokeType="OUTSIDE" strokeWidth="0.0" text="(&lt;AD&gt; AD, &lt;DEF&gt; DEF)">
+               <StackPane.margin>
+                  <Insets top="65.0" />
+               </StackPane.margin>
+            </Text>
+         </children>
+      </StackPane>
+      <Button fx:id="buttonEquip" layoutX="604.0" layoutY="617.0" mnemonicParsing="false" onAction="#handleButtonEquip" prefHeight="53.0" prefWidth="98.0" text="Equip" />
+      <Button fx:id="buttonAddInventory" layoutX="543.0" layoutY="695.0" mnemonicParsing="false" onAction="#handleButtonAddToInv" prefHeight="53.0" prefWidth="220.0" text="Add to Inventory" />
+   </children>
+</AnchorPane>
